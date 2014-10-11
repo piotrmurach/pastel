@@ -30,6 +30,7 @@ module Pastel
     BRIGHT_BLUE    = "\e[94m"
     BRIGHT_MAGENTA = "\e[95m"
     BRIGHT_CYAN    = "\e[96m"
+    BRIGHT_WHITE   = "\e[97m"
 
     # Escape codes for background color.
     ON_BLACK         = "\e[40m"
@@ -48,6 +49,7 @@ module Pastel
     ON_BRIGHT_BLUE    = "\e[104m"
     ON_BRIGHT_MAGENTA = "\e[105m"
     ON_BRIGHT_CYAN    = "\e[106m"
+    ON_BRIGHT_WHITE   = "\e[107m"
 
     BACKGROUND_COLORS = constants.grep(/^ON_*/).freeze
   end # ANSI
