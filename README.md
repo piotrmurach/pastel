@@ -11,6 +11,8 @@ Terminal output styling with intuitive and clean API that doesn't monkey patch S
 
 **Pastel** is minimal and focused to work in all terminal emulators.
 
+![screenshot](https://github.com/peter-murach/github/raw/master/assets/screenshot.png)]
+
 ## Features
 
 * Doesn't monkey patch `String`
