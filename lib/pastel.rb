@@ -12,8 +12,18 @@ module Pastel
   # Raised when the style attribute is not supported
   InvalidAttributeNameError = Class.new(::ArgumentError)
 
-  def new
-    Delegator.for(DecoratorChain.empty)
+  # Create Pastel chainable API
+  #
+  # @example
+  #   pastel = Pastel.new enabled: true
+  #
+  # @return [Delegator]
+  #
+  # @api public
+  def new(options = {})
+    color    = Color.new(options)
+    resolver = ColorResolver.new(color)
+    Delegator.for(resolver, DecoratorChain.empty)
   end
 
   module_function :new

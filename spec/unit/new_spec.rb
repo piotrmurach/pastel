@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe Pastel do
 
-  subject(:pastel) { described_class.new }
+  subject(:pastel) { described_class.new(enabled: true) }
 
   describe 'coloring string' do
     it "doesn't apply styles to empty string" do
@@ -55,7 +55,11 @@ RSpec.describe Pastel do
     end
   end
 
-  it "respond to styles method" do
-    expect(pastel).to respond_to(:styles)
+  describe 'options passed in' do
+    it "receives enabled option" do
+      pastel = described_class.new(enabled: false)
+      expect(pastel.enabled?).to eq(false)
+      expect(pastel.red('Unicorn', pastel.green('!'))).to eq('Unicorn!')
+    end
   end
 end

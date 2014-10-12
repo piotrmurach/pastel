@@ -7,29 +7,33 @@ module Pastel
   # @api private
   class Delegator
     extend Forwardable
+    include Equatable
+
+    def_delegators '@resolver.color', :valid?, :styles, :strip, :decorate, :enabled?
+
+    def initialize(resolver, base)
+      @resolver = resolver
+      @base     = base
+    end
+
+    # @api public
+    def self.for(resolver, base)
+      new(resolver, base)
+    end
+
+    protected
 
     attr_reader :base
 
     attr_reader :resolver
 
-    def_delegators :@color, :valid?, :styles, :strip, :decorate
-
-    def initialize(base)
-      @base = base
-      @color = Color.new
-      @resolver = ColorResolver.new(@color)
+    def wrap(base)
+      self.class.new(resolver, base)
     end
-
-    # @api public
-    def self.for(value)
-      new(value)
-    end
-
-    protected
 
     def method_missing(method_name, *args, &block)
       new_base  = base.add(method_name)
-      delegator = self.class.new(new_base)
+      delegator = wrap(new_base)
       if args.empty?
         delegator
       else
@@ -38,7 +42,7 @@ module Pastel
     end
 
     def respond_to_missing?(name, include_all = false)
-      super || @color.respond_to?(name, include_all)
+      super || @resolver.color.respond_to?(name, include_all)
     end
   end # Delegator
 end # Pastel
