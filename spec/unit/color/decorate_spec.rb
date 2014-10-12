@@ -5,7 +5,7 @@ require 'spec_helper'
 RSpec.describe Pastel::Color, '.decorate' do
   let(:string) { 'string' }
 
-  subject(:color) { described_class.new }
+  subject(:color) { described_class.new(enabled: true) }
 
   it "doesn't apply styling to empty string" do
     expect(color.decorate('')).to eq('')

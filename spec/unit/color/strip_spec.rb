@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 RSpec.describe Pastel::Color, '.strip' do
-  let(:instance) { described_class.new }
+  let(:instance) { described_class.new(enabled: true) }
 
   subject(:color) { instance.strip(string) }
 
