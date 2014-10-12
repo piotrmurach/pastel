@@ -44,6 +44,7 @@ Or install it yourself as:
   * [2.3 Strip](#23-strip)
   * [2.4 Styles](#24-styles)
   * [2.5 Valid?](#25-valid)
+  * [2.6 Enabled?](#26-enabled)
 * [3. The available styles](#3-the-available-styles)
 
 ## 1 Usage
@@ -68,7 +69,7 @@ You can compose multiple styles through chainable API:
 pastel.red.on_green.bold('Unicorns!')
 ```
 
-It supports variable number of arguments with individual styling:
+It supports variable number of arguments:
 
 ```ruby
 pastel.red('Unicorns', 'are', 'running', 'everywhere!')
@@ -87,7 +88,7 @@ pastel.red('Unicorns ', pastel.on_green('everywhere!'))
 You can pass variable number of styled strings like so:
 
 ```ruby
-pastel.red('Unicorns', pastel.on_yellow('are running', pastel.bold.underline('everywhere')), '!')
+pastel.red('Unicorns ', pastel.bold.underline('everywhere'), '!')
 ```
 
 Please refer to [3. The available styles](#3-the-available-styles) section for full list of supported styles.
@@ -123,6 +124,21 @@ Determine whether a color is valid:
 ```ruby
 pastel.valid?(:red)     # => true
 pastel.valid?(:unicorn) # => false
+```
+
+### 2.6 Enabled?
+
+In order to detect if your terminal supports coloring do:
+
+```ruby
+pastel.enabled?   # => false
+```
+
+In cases when the color support is not provided no styling will be applied to the colored string. Moreover, you can force **Pastel** to always print out string with coloring switched on:
+
+```ruby
+pastel = Pastel.new(enabled: true)
+pastel.enabled?   # => false
 ```
 
 ## 3 The available styles
