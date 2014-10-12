@@ -9,6 +9,11 @@ module Pastel
   class ColorResolver
     attr_reader :color
 
+    # Initialize ColorResolver
+    #
+    # @param [Color] color
+    #
+    # @api private
     def initialize(color = Color.new)
       @color = color
     end
