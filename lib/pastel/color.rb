@@ -7,12 +7,13 @@ module Pastel
     include ANSI
 
     attr_reader :enabled
+    alias_method :enabled?, :enabled
 
     # Initialize a Terminal Color
     #
     # @api public
-    def initialize(enabled = false)
-      @enabled = enabled
+    def initialize(options = {})
+      @enabled = options.fetch(:enabled) { supports? }
     end
 
     # Disable coloring of this terminal session
@@ -20,6 +21,22 @@ module Pastel
     # @api public
     def disable!
       @enabled = false
+    end
+
+    # Detect terminal color support
+    #
+    # @return [Boolean]
+    #   true when terminal supports color, false otherwise
+    #
+    # @api public
+    def supports?
+      return false unless $stdout.tty?
+      return false if ENV['TERM'] == 'dumb'
+      if ENV['TERM'] =~ /^screen|^xterm|^vt100|color|ansi|cygwin|linux/i
+        return true
+      end
+      return true if ENV.include?('COLORTERM')
+      true
     end
 
     # Apply ANSI color to the given string.
@@ -36,7 +53,7 @@ module Pastel
     #
     # @api public
     def decorate(string, *colors)
-      return string if string.empty?
+      return string if string.empty? || !enabled
       validate(*colors)
       ansi_colors = colors.map { |color| lookup(color) }
       ansi_string = "#{ansi_colors.join}#{string}#{ANSI::CLEAR}"
