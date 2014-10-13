@@ -1,3 +1,7 @@
+0.2.1 (October 13, 2014)
+
+* Fix issue #1 with unitialize dependency
+
 0.2.0 (October 12, 2014)
 
 * Change gemspec to include equatable as dependency
