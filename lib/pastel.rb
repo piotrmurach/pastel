@@ -1,6 +1,8 @@
 # encoding: utf-8
 
+require 'forwardable'
 require 'equatable'
+
 require 'pastel/ansi'
 require 'pastel/color'
 require 'pastel/color_resolver'
