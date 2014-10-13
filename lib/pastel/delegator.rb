@@ -1,5 +1,7 @@
 # coding: utf-8
 
+require 'forwardable'
+
 module Pastel
   # Wrapes the {DecoratorChain} to allow for easy resolution
   # of string coloring.
