@@ -43,6 +43,12 @@ RSpec.describe Pastel do
       expect(pastel.red('r', pastel.green('g'), 'r')).
         to eq("\e[31mr\e[32mg\e[31mr\e[0m")
     end
+
+    it "raises error when doesn't recognize color" do
+      expect {
+        pastel.uknown('unicorn')
+      }.to raise_error(Pastel::InvalidAttributeNameError)
+    end
   end
 
   describe '.valid?' do
