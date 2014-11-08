@@ -24,14 +24,29 @@ RSpec.describe Pastel do
         to eq("\e[31mUnicorns\e[0m will rule \e[32mthe World!\e[0m")
     end
 
-    it "composes color strings" do
+    it "composes two color strings " do
+      expect(pastel.red.on_green("unicorn")).to eq("\e[31;42municorn\e[0m")
+    end
+
+    it "composes three color strings" do
       expect(pastel.red.on_green.underline("unicorn")).
-        to eq("\e[4m\e[42m\e[31municorn\e[0m")
+        to eq("\e[31;42;4municorn\e[0m")
+    end
+
+    it "combines colored composed strings with regular ones" do
+      expect(pastel.red.on_green("Unicorns") + ' will rule ' +
+        pastel.green.on_red('the World!')).
+      to eq("\e[31;42mUnicorns\e[0m will rule \e[32;41mthe World!\e[0m")
+    end
+
+    it "allows one level nesting" do
+      expect(pastel.red("Unicorn" + pastel.blue("rule!"))).
+        to eq("\e[31mUnicorn\e[34mrule!\e[0m")
     end
 
     it "allows to nest mixed styles" do
       expect(pastel.red("Unicorn" + pastel.green.on_yellow.underline('running') + '!')).
-        to eq("\e[31mUnicorn\e[4m\e[43m\e[32mrunning\e[31m!\e[0m")
+        to eq("\e[31mUnicorn\e[32;43;4mrunning\e[31m!\e[0m")
     end
 
     it "allows for deep nesting" do
@@ -44,9 +59,15 @@ RSpec.describe Pastel do
         to eq("\e[31mr\e[32mg\e[31mr\e[0m")
     end
 
+    it "raises error when chained with unrecognized color" do
+      expect {
+        pastel.unknown.on_red('unicorn')
+      }.to raise_error(Pastel::InvalidAttributeNameError)
+    end
+
     it "raises error when doesn't recognize color" do
       expect {
-        pastel.uknown('unicorn')
+        pastel.unknown('unicorn')
       }.to raise_error(Pastel::InvalidAttributeNameError)
     end
   end
