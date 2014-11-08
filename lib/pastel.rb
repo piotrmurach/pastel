@@ -14,6 +14,9 @@ module Pastel
   # Raised when the style attribute is not supported
   InvalidAttributeNameError = Class.new(::ArgumentError)
 
+  # Raised when the color alias is not supported
+  InvalidAliasNameError = Class.new(::ArgumentError)
+
   # Create Pastel chainable API
   #
   # @example
