@@ -3,6 +3,9 @@
 require 'spec_helper'
 
 RSpec.describe Pastel::Color, '.supports?' do
+
+  before { allow(ENV).to receive(:[]).with('PASTEL_COLORS_ALIASES') }
+
   it "isn't enabled for non tty terminal" do
     allow($stdout).to receive(:tty?).and_return(false)
     color = described_class.new

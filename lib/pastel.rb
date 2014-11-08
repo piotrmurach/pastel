@@ -4,6 +4,7 @@ require 'forwardable'
 require 'equatable'
 
 require 'pastel/ansi'
+require 'pastel/alias_importer'
 require 'pastel/color'
 require 'pastel/color_resolver'
 require 'pastel/delegator'
@@ -27,6 +28,8 @@ module Pastel
   # @api public
   def new(options = {})
     color    = Color.new(options)
+    importer = AliasImporter.new(color)
+    importer.import
     resolver = ColorResolver.new(color)
     Delegator.for(resolver, DecoratorChain.empty)
   end
