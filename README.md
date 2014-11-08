@@ -45,6 +45,7 @@ Or install it yourself as:
   * [2.4 Styles](#24-styles)
   * [2.5 Valid?](#25-valid)
   * [2.6 Enabled?](#26-enabled)
+  * [2.6 Alias Color?](#27-alias-color)
 * [3. The available styles](#3-the-available-styles)
 
 ## 1 Usage
@@ -101,9 +102,11 @@ This method is a lower level string styling call that takes as the first argumen
 pastel.decorate('Unicorn', :green, :on_blue, :bold)
 ```
 
+This method will be useful in situations where colors are provided as a list of parameters.
+
 ### 2.3 Strip
 
-Strip all color sequence characters:
+Strip all color sequence characters from the provided strings. The return value will be eithre array of modified strings or a single string. The arguments are not modified.
 
 ```ruby
 pastel.strip("\e[1m\e[34mbold blue text\e[0m"")  # => "bold blue text"
@@ -119,11 +122,11 @@ pastel.styles
 
 ### 2.5 Valid?
 
-Determine whether a color is valid:
+Determine whether a color or a list of colors are valid. `valid?` takes one or more attribute strings or symbols and returns true if all attributes are known and false otherwise.
 
 ```ruby
-pastel.valid?(:red)     # => true
-pastel.valid?(:unicorn) # => false
+pastel.valid?(:red, :blue) # => true
+pastel.valid?(:unicorn)    # => false
 ```
 
 ### 2.6 Enabled?
@@ -140,6 +143,24 @@ In cases when the color support is not provided no styling will be applied to th
 pastel = Pastel.new(enabled: true)
 pastel.enabled?   # => false
 ```
+
+### 2.7 Alias Color
+
+In order to setup an alias for the standard color do:
+
+```ruby
+pastel.alias_color(:funky, :red)
+```
+
+From that point forward, `:funky` alias can be passed to `decorate`, `valid?` with the same meaning as standard color:
+
+```ruby
+pastel.funky.on_green('unicorn')   # => will use :red color
+```
+
+This method allows you to give more meaningful names to existing colors.
+
+Note: Aliases are global and affect all callers in the same process.
 
 ## 3 The available styles
 
@@ -198,7 +219,7 @@ Generic styles:
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/pastel/fork )
+1. Fork it ( https://github.com/peter-murach/pastel/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
