@@ -18,11 +18,12 @@ module Pastel
       @color = color
     end
 
+    # Resolve uncolored string
+    #
+    # @api private
     def resolve(base, *args)
       unprocessed_string = args.join
-      base.reduce(unprocessed_string) do |component, decorator|
-        color.decorate(component, decorator)
-      end
+      color.decorate(unprocessed_string, *base)
     end
   end # ColorResolver
 end # Pastel
