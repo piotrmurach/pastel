@@ -34,7 +34,7 @@ module Pastel
     # Object string representation
     #
     # @api
-    def inspec
+    def inspect
       "<##{self.class.name}>"
     end
 
