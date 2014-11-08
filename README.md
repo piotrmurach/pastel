@@ -13,6 +13,8 @@ Terminal output styling with intuitive and clean API that doesn't monkey patch S
 
 ![screenshot](https://github.com/peter-murach/pastel/raw/master/assets/screenshot.png)
 
+**Pastel** provides independent coloring component for [TTY](https://github.com/peter-murach/tty) toolkit.
+
 ## Features
 
 * Doesn't monkey patch `String`
@@ -45,8 +47,8 @@ Or install it yourself as:
   * [2.4 Styles](#24-styles)
   * [2.5 Valid?](#25-valid)
   * [2.6 Enabled?](#26-enabled)
-  * [2.6 Alias Color?](#27-alias-color)
-* [3. The available styles](#3-the-available-styles)
+  * [2.7 Alias Color](#27-alias-color)
+* [3. Supported Colors](#3-supported-colors)
 
 ## 1 Usage
 
@@ -92,7 +94,7 @@ You can pass variable number of styled strings like so:
 pastel.red('Unicorns ', pastel.bold.underline('everywhere'), '!')
 ```
 
-Please refer to [3. The available styles](#3-the-available-styles) section for full list of supported styles.
+Please refer to [3. Supported Colors](#3-supported-colors) section for full list of supported styles.
 
 ### 2.2 Decorate
 
@@ -162,7 +164,7 @@ This method allows you to give more meaningful names to existing colors.
 
 Note: Aliases are global and affect all callers in the same process.
 
-## 3 The available styles
+## 3 Supported Colors
 
 **Pastel** works with terminal emulators that support minimum sixteen colors. It provides `16` basic colors and `8` styles with further `16` bright color pairs. The corresponding bright color is obtained by prepending the `bright` to the normal color name. For example, color `red` will have `bright_red` as its pair.
 
