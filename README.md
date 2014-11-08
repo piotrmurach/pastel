@@ -49,6 +49,7 @@ Or install it yourself as:
   * [2.6 Enabled?](#26-enabled)
   * [2.7 Alias Color](#27-alias-color)
 * [3. Supported Colors](#3-supported-colors)
+* [4. Environment](#4-environment)
 
 ## 1 Usage
 
@@ -162,6 +163,8 @@ pastel.funky.on_green('unicorn')   # => will use :red color
 
 This method allows you to give more meaningful names to existing colors.
 
+You can also use the `PASTEL_COLORS_ALIASES` environment variable (see [Environment](#4-environment)) to specify aliases.
+
 Note: Aliases are global and affect all callers in the same process.
 
 ## 3 Supported Colors
@@ -218,6 +221,18 @@ Generic styles:
 * `inverse`
 * `hidden`
 * `strikethrough`
+
+## 4 Environment
+
+### 4.1 PASTEL_COLORS_ALIASES
+
+This environment variable allows you to specify custom color aliases at runtime that will be understood by **Pastel**. The environment variable is read and used when the instance of **Pastel** is created. You can also use `alias_color` to create aliases.
+
+Only alphanumeric and `_` are allowed in the alias names with the following format:
+
+```ruby
+PASTEL_COLORS_ALIASES='newcolor_1=red,newcolor_2=on_gree'
+```
 
 ## Contributing
 
