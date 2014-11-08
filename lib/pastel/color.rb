@@ -208,10 +208,11 @@ module Pastel
       if !(alias_name.to_s =~ /^[\w]+$/)
         fail InvalidAliasNameError, "Invalid alias name `#{alias_name}`"
       elsif ANSI::ATTRIBUTES[alias_name]
-        fail InvalidAliasNameError, "Cannot alias standard color `#{alias_name}`"
+        fail InvalidAliasNameError,
+             "Cannot alias standard color `#{alias_name}`"
       end
 
-      ALIASES[alias_name] = ANSI::ATTRIBUTES[color]
+      ALIASES[alias_name.to_sym] = ANSI::ATTRIBUTES[color]
       color
     end
 
