@@ -6,6 +6,8 @@ module Pastel
     include Equatable
     include ANSI
 
+    ALIASES = {}
+
     attr_reader :enabled
     alias_method :enabled?, :enabled
 
@@ -134,7 +136,7 @@ module Pastel
     def code(*colors)
       attribute = []
       colors.each do |color|
-        value = ANSI::ATTRIBUTES[color]
+        value = ANSI::ATTRIBUTES[color] || ALIASES[color]
         if value
           attribute << value
         else
@@ -164,7 +166,7 @@ module Pastel
     #
     # @api public
     def styles
-      ANSI::ATTRIBUTES
+      ANSI::ATTRIBUTES.merge(ALIASES)
     end
 
     # List all available style names
@@ -189,7 +191,31 @@ module Pastel
       colors.all? { |color| style_names.include?(color.to_sym) }
     end
 
-    protected
+    # Define a new color alias
+    #
+    # @param [String] alias_name
+    #   the color alias to define
+    # @param [String] color
+    #   the color the alias will correspond to
+    #
+    # @return [String]
+    #   the standard color value of the alias
+    #
+    # @api public
+    def alias_color(alias_name, color)
+      validate(color)
+
+      if !(alias_name.to_s =~ /^[\w]+$/)
+        fail InvalidAliasNameError, "Invalid alias name `#{alias_name}`"
+      elsif ANSI::ATTRIBUTES[alias_name]
+        fail InvalidAliasNameError, "Cannot alias standard color `#{alias_name}`"
+      end
+
+      ALIASES[alias_name] = ANSI::ATTRIBUTES[color]
+      color
+    end
+
+    private
 
     # @api private
     def validate(*colors)
