@@ -3,54 +3,54 @@
 module Pastel
   # Mixin that provides ANSI codes
   module ANSI
-    CLEAR         = "\e[0m"
+    ATTRIBUTES = {
+      clear:      0,
+      reset:      0,
+      bold:       1,
+      dark:       2,
+      dim:        2,
+      italic:     3,
+      underline:  4,
+      underscore: 4,
+      inverse:    7,
+      hidden:     8,
+      strikethrough: 9,
 
-    BOLD          = "\e[1m"
-    DIM           = "\e[2m"
-    ITALIC        = "\e[3m"
-    UNDERLINE     = "\e[4m"
-    INVERSE       = "\e[7m"
-    HIDDEN        = "\e[8m"
-    STRIKETHROUGH = "\e[9m"
+      black:   30,
+      red:     31,
+      green:   32,
+      yellow:  33,
+      blue:    34,
+      magenta: 35,
+      cyan:    36,
+      white:   37,
 
-    # Escape codes for text color.
-    BLACK         = "\e[30m"
-    RED           = "\e[31m"
-    GREEN         = "\e[32m"
-    YELLOW        = "\e[33m"
-    BLUE          = "\e[34m"
-    MAGENTA       = "\e[35m"
-    CYAN          = "\e[36m"
-    WHITE         = "\e[37m"
+      on_black:   40,
+      on_red:     41,
+      on_green:   42,
+      on_yellow:  43,
+      on_blue:    44,
+      on_magenta: 45,
+      on_cyan:    46,
+      on_white:   47,
 
-    BRIGHT_BLACK   = "\e[90m"
-    BRIGHT_RED     = "\e[91m"
-    BRIGHT_GREEN   = "\e[92m"
-    BRIGHT_YELLOW  = "\e[93m"
-    BRIGHT_BLUE    = "\e[94m"
-    BRIGHT_MAGENTA = "\e[95m"
-    BRIGHT_CYAN    = "\e[96m"
-    BRIGHT_WHITE   = "\e[97m"
+      bright_black:   90,
+      bright_red:     91,
+      bright_green:   92,
+      bright_yellow:  93,
+      bright_blue:    94,
+      bright_magenta: 95,
+      bright_cyan:    96,
+      bright_white:   97,
 
-    # Escape codes for background color.
-    ON_BLACK         = "\e[40m"
-    ON_RED           = "\e[41m"
-    ON_GREEN         = "\e[42m"
-    ON_YELLOW        = "\e[43m"
-    ON_BLUE          = "\e[44m"
-    ON_MAGENTA       = "\e[45m"
-    ON_CYAN          = "\e[46m"
-    ON_WHITE         = "\e[47m"
-
-    ON_BRIGHT_BLACK   = "\e[100m"
-    ON_BRIGHT_RED     = "\e[101m"
-    ON_BRIGHT_GREEN   = "\e[102m"
-    ON_BRIGHT_YELLOW  = "\e[103m"
-    ON_BRIGHT_BLUE    = "\e[104m"
-    ON_BRIGHT_MAGENTA = "\e[105m"
-    ON_BRIGHT_CYAN    = "\e[106m"
-    ON_BRIGHT_WHITE   = "\e[107m"
-
-    BACKGROUND_COLORS = constants.grep(/^ON_*/).freeze
+      on_bright_black:   100,
+      on_bright_red:     101,
+      on_bright_green:   102,
+      on_bright_yellow:  103,
+      on_bright_blue:    104,
+      on_bright_magenta: 105,
+      on_bright_cyan:    106,
+      on_bright_white:   107
+    }
   end # ANSI
 end # Pastel
