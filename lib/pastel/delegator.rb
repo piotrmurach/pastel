@@ -31,6 +31,13 @@ module Pastel
       new(resolver, base)
     end
 
+    # Object string representation
+    #
+    # @api
+    def inspec
+      "<##{self.class.name}>"
+    end
+
     protected
 
     attr_reader :base
