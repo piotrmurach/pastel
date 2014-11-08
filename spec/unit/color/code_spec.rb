@@ -8,11 +8,11 @@ RSpec.describe Pastel::Color, '.code' do
   subject(:color) { described_class.new(enabled: true) }
 
   it 'finds single code' do
-    expect(color.code(:black)).to eq(["\e[30m"])
+    expect(color.code(:black)).to eq([30])
   end
 
   it 'finds more than one code' do
-    expect(color.code(:black, :green)).to eq(["\e[30m", "\e[32m"])
+    expect(color.code(:black, :green)).to eq([30, 32])
   end
 
   it "doesn't find code" do

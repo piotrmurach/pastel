@@ -20,12 +20,12 @@ RSpec.describe Pastel::Color, '.decorate' do
   end
 
   it 'applies style and color to string' do
-    expect(color.decorate(string, :bold, :green)).to eq("\e[1m\e[32m#{string}\e[0m")
+    expect(color.decorate(string, :bold, :green)).to eq("\e[1;32m#{string}\e[0m")
   end
 
   it 'applies style, color and background to string' do
     text = color.decorate(string, :bold, :green, :on_blue)
-    expect(text).to eq("\e[1m\e[32m\e[44m#{string}\e[0m")
+    expect(text).to eq("\e[1;32;44m#{string}\e[0m")
   end
 
   it "applies styles to nested text" do
