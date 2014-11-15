@@ -2,10 +2,12 @@
 [![Gem Version](https://badge.fury.io/rb/pastel.png)][gem]
 [![Build Status](https://secure.travis-ci.org/peter-murach/pastel.png?branch=master)][travis]
 [![Code Climate](https://codeclimate.com/github/peter-murach/pastel.png)][codeclimate]
+[![Coverage Status](https://coveralls.io/repos/peter-murach/pastel/badge.png)][coverage]
 
 [gem]: http://badge.fury.io/rb/pastel
 [travis]: http://travis-ci.org/peter-murach/pastel
 [codeclimate]: https://codeclimate.com/github/peter-murach/pastel
+[coverage]: https://coveralls.io/r/peter-murach/pastel
 
 Terminal output styling with intuitive and clean API that doesn't monkey patch String class.
 
