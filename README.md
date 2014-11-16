@@ -60,7 +60,7 @@ Or install it yourself as:
 ```ruby
 pastel = Pastel.new
 
-pastel.red('Unicorns!')
+puts pastel.red('Unicorns!')
 ```
 
 It allows you to combine styled strings with regular ones:
@@ -85,6 +85,12 @@ You can also nest styles as follows:
 
 ```ruby
 pastel.red('Unicorns ', pastel.on_green('everywhere!'))
+```
+
+Nesting is smart enough to be know where another colour wants to take over:
+
+```ruby
+pastel.red('Unicorns ' + pastel.green('everywhere!'))
 ```
 
 ## 2 Interface
