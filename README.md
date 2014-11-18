@@ -9,7 +9,7 @@
 [codeclimate]: https://codeclimate.com/github/peter-murach/pastel
 [coverage]: https://coveralls.io/r/peter-murach/pastel
 
-Terminal output styling with intuitive and clean API that doesn't monkey patch String class.
+> Terminal output styling with intuitive and clean API that doesn't monkey patch String class.
 
 **Pastel** is minimal and focused to work in all terminal emulators.
 
@@ -87,10 +87,10 @@ You can also nest styles as follows:
 pastel.red('Unicorns ', pastel.on_green('everywhere!'))
 ```
 
-Nesting is smart enough to be know where another colour wants to take over:
+Nesting is smart enough to know where one color ends and another one starts:
 
 ```ruby
-pastel.red('Unicorns ' + pastel.green('everywhere!'))
+pastel.red('Unicorns ' + pastel.green('everywhere') + pastel.on_yellow('!'))
 ```
 
 ## 2 Interface
@@ -120,7 +120,7 @@ This method will be useful in situations where colors are provided as a list of 
 Strip all color sequence characters from the provided strings. The return value will be eithre array of modified strings or a single string. The arguments are not modified.
 
 ```ruby
-pastel.strip("\e[1m\e[34mbold blue text\e[0m"")  # => "bold blue text"
+pastel.strip("\e[1m\e[34mbold blue text\e[0m")  # => "bold blue text"
 ```
 
 ### 2.4 Styles
