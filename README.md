@@ -97,11 +97,11 @@ pastel.red('Unicorns ' + pastel.green('everywhere') + pastel.on_yellow('!'))
 You can also predefine needed styles and reuse them:
 
 ```ruby
-error = pastel.red.on_bold.detach
-warn  = pastel.yellow.detach
+error    = pastel.red.on_bold.detach
+warning  = pastel.yellow.detach
 
 puts error('Error!')
-puts warn('Warning')
+puts warning('Warning')
 ```
 
 ## 2 Interface
