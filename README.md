@@ -45,11 +45,12 @@ Or install it yourself as:
 * [2. Interface](#2-interface)
   * [2.1 Color](#21-color)
   * [2.2 Decorate](#22-decorate)
-  * [2.3 Strip](#23-strip)
-  * [2.4 Styles](#24-styles)
-  * [2.5 Valid?](#25-valid)
-  * [2.6 Enabled?](#26-enabled)
-  * [2.7 Alias Color](#27-alias-color)
+  * [2.3 Detach](#23-detach)
+  * [2.4 Strip](#24-strip)
+  * [2.5 Styles](#25-styles)
+  * [2.6 Valid?](#26-valid)
+  * [2.7 Enabled?](#27-enabled)
+  * [2.8 Alias Color](#28-alias-color)
 * [3. Supported Colors](#3-supported-colors)
 * [4. Environment](#4-environment)
 
@@ -93,6 +94,16 @@ Nesting is smart enough to know where one color ends and another one starts:
 pastel.red('Unicorns ' + pastel.green('everywhere') + pastel.on_yellow('!'))
 ```
 
+You can also predefine needed styles and reuse them:
+
+```ruby
+error = pastel.red.on_bold.detach
+warn  = pastel.yellow.detach
+
+puts error('Error!')
+puts warn('Warning')
+```
+
 ## 2 Interface
 
 ### 2.1 Color
@@ -115,7 +126,17 @@ pastel.decorate('Unicorn', :green, :on_blue, :bold)
 
 This method will be useful in situations where colors are provided as a list of parameters.
 
-### 2.3 Strip
+### 2.3 Detach
+
+The `detach` method allows to keep all the coloring for later reference. This method is useful when detached colors are being resued frequently and thus shorthand version is preferred.
+
+```ruby
+notice = pastel.blue.bold.detach
+puts notice.call('Unicorns running')
+puts notice.call('They are super wild')
+```
+
+### 2.4 Strip
 
 Strip all color sequence characters from the provided strings. The return value will be eithre array of modified strings or a single string. The arguments are not modified.
 
@@ -123,7 +144,7 @@ Strip all color sequence characters from the provided strings. The return value 
 pastel.strip("\e[1m\e[34mbold blue text\e[0m")  # => "bold blue text"
 ```
 
-### 2.4 Styles
+### 2.5 Styles
 
 To get a full list of supported styles with the corresponding color codes do:
 
@@ -131,7 +152,7 @@ To get a full list of supported styles with the corresponding color codes do:
 pastel.styles
 ```
 
-### 2.5 Valid?
+### 2.6 Valid?
 
 Determine whether a color or a list of colors are valid. `valid?` takes one or more attribute strings or symbols and returns true if all attributes are known and false otherwise.
 
@@ -140,7 +161,7 @@ pastel.valid?(:red, :blue) # => true
 pastel.valid?(:unicorn)    # => false
 ```
 
-### 2.6 Enabled?
+### 2.7 Enabled?
 
 In order to detect if your terminal supports coloring do:
 
@@ -155,7 +176,7 @@ pastel = Pastel.new(enabled: true)
 pastel.enabled?   # => false
 ```
 
-### 2.7 Alias Color
+### 2.8 Alias Color
 
 In order to setup an alias for the standard color do:
 
