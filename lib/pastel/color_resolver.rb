@@ -23,7 +23,11 @@ module Pastel
     # @api private
     def resolve(base, *args)
       unprocessed_string = args.join
-      color.decorate(unprocessed_string, *base)
+      if base.to_a.last == :detach
+        Detached.new(color, *base.to_a[0...-1])
+      else
+        color.decorate(unprocessed_string, *base)
+      end
     end
   end # ColorResolver
 end # Pastel

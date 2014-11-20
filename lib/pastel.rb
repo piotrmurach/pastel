@@ -8,6 +8,7 @@ require 'pastel/alias_importer'
 require 'pastel/color'
 require 'pastel/color_resolver'
 require 'pastel/delegator'
+require 'pastel/detached'
 require 'pastel/decorator_chain'
 require 'pastel/version'
 

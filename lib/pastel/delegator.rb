@@ -51,7 +51,7 @@ module Pastel
     def method_missing(method_name, *args, &block)
       new_base  = base.add(method_name)
       delegator = wrap(new_base)
-      if args.empty?
+      if args.empty? && !(method_name.to_sym == :detach)
         delegator
       else
         resolver.resolve(new_base, *args)
