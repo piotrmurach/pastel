@@ -7,6 +7,11 @@ RSpec.describe Pastel::Color, '.decorate' do
 
   subject(:color) { described_class.new(enabled: true) }
 
+  it "doesn't output styling when disabled" do
+    color = described_class.new(enabled: false)
+    expect(color.decorate('foo', :red)).to eq('foo')
+  end
+
   it "doesn't apply styling to empty string" do
     expect(color.decorate('')).to eq('')
   end
