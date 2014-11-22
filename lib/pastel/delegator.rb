@@ -31,6 +31,8 @@ module Pastel
       new(resolver, base)
     end
 
+    remove_method :inspect
+
     # Object string representation
     #
     # @api
