@@ -8,8 +8,6 @@ module Pastel
     include Enumerable
     include Equatable
 
-    attr_reader :decorators
-
     def initialize(decorators = [])
       @decorators = decorators
     end
@@ -36,5 +34,9 @@ module Pastel
     def self.empty
       new([])
     end
+
+    protected
+
+    attr_reader :decorators
   end # DecoratorChain
 end # Patel
