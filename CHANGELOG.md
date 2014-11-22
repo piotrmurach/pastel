@@ -1,6 +1,12 @@
+0.4.0 (November 22, 2014)
+
+* Fix Delegator#respond_to method to correctly report existence of methods
+* Add ability to #detach color combination for later reuse
+* Add ability to nest styles with blocks
+
 0.3.0 (November 8, 2014)
 
-* Add ability to alias colors through alias_color method
+* Add ability to alias colors through #alias_color method
 * Add ability to alias colors through the environment variable
 * Improve performance of Pastel::Color styles and lookup methods
 * Fix bug concerned with lack of escaping for nested styles
