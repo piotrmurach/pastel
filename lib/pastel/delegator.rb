@@ -59,7 +59,7 @@ module Pastel
     end
 
     def respond_to_missing?(name, include_all = false)
-      super || @resolver.color.respond_to?(name, include_all)
+      resolver.color.respond_to?(name, include_all) || valid?(name) || super
     end
   end # Delegator
 end # Pastel
