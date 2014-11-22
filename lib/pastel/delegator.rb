@@ -44,6 +44,9 @@ module Pastel
 
     attr_reader :resolver
 
+    # Wrap colors
+    #
+    # @api private
     def wrap(base)
       self.class.new(resolver, base)
     end
@@ -54,12 +57,22 @@ module Pastel
       if args.empty? && !(method_name.to_sym == :detach)
         delegator
       else
-        resolver.resolve(new_base, *args)
+        string = args.join
+        string << evaluate_block(&block) if block_given?
+        resolver.resolve(new_base, string)
       end
     end
 
     def respond_to_missing?(name, include_all = false)
       resolver.color.respond_to?(name, include_all) || valid?(name) || super
+    end
+
+    # Evaluate color block
+    #
+    # @api private
+    def evaluate_block(&block)
+      delegator = self.class.new(resolver, DecoratorChain.empty)
+      delegator.instance_eval(&block)
     end
   end # Delegator
 end # Pastel

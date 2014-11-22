@@ -59,6 +59,17 @@ RSpec.describe Pastel do
         to eq("\e[31mr\e[32mg\e[31mr\e[0m")
     end
 
+    it "allows to nest styles within block" do
+      string = pastel.red.on_green('Unicorns' +
+        pastel.green.on_red('will ', 'dominate' + pastel.yellow('the world!')))
+
+      expect(pastel.red.on_green('Unicorns') do
+        green.on_red('will ', 'dominate') do
+          yellow('the world!')
+        end
+      end).to eq(string)
+    end
+
     it "raises error when chained with unrecognized color" do
       expect {
         pastel.unknown.on_red('unicorn')
