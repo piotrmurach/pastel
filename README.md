@@ -64,16 +64,16 @@ pastel = Pastel.new
 puts pastel.red('Unicorns!')
 ```
 
-It allows you to combine styled strings with regular ones:
-
-```ruby
-pastel.red('Unicorns') + ' will rule ' + pastel.green('the World!')
-```
-
 You can compose multiple styles through chainable API:
 
 ```ruby
 pastel.red.on_green.bold('Unicorns!')
+```
+
+It allows you to combine styled strings with unstyled ones:
+
+```ruby
+pastel.red('Unicorns') + ' will rule ' + pastel.green('the World!')
 ```
 
 It supports variable number of arguments:
@@ -92,6 +92,16 @@ Nesting is smart enough to know where one color ends and another one starts:
 
 ```ruby
 pastel.red('Unicorns ' + pastel.green('everywhere') + pastel.on_yellow('!'))
+```
+
+You can also nest styles inside blocks:
+
+```ruby
+pastel.red.on_green('Unicorns') {
+  green.on_red('will ', 'dominate') {
+    yellow('the world!')
+  }
+}
 ```
 
 You can also predefine needed styles and reuse them:
