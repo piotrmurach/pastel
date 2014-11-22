@@ -270,7 +270,7 @@ This environment variable allows you to specify custom color aliases at runtime 
 Only alphanumeric and `_` are allowed in the alias names with the following format:
 
 ```ruby
-PASTEL_COLORS_ALIASES='newcolor_1=red,newcolor_2=on_gree'
+PASTEL_COLORS_ALIASES='newcolor_1=red,newcolor_2=on_green'
 ```
 
 ## Contributing
