@@ -21,8 +21,7 @@ module Pastel
     # Resolve uncolored string
     #
     # @api private
-    def resolve(base, *args)
-      unprocessed_string = args.join
+    def resolve(base, unprocessed_string)
       if base.to_a.last == :detach
         Detached.new(color, *base.to_a[0...-1])
       else
