@@ -37,6 +37,7 @@ module Pastel
       if ENV['TERM'] =~ /^screen|^xterm|^vt100|color|ansi|cygwin|linux/i
         return true
       end
+      return true if %x(tput colors 2>/dev/null).to_i > 2
       return true if ENV.include?('COLORTERM')
       true
     end
