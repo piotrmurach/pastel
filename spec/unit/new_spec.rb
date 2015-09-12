@@ -99,5 +99,10 @@ RSpec.describe Pastel do
       expect(pastel.enabled?).to eq(false)
       expect(pastel.red('Unicorn', pastel.green('!'))).to eq('Unicorn!')
     end
+
+    it "sets eahcline option" do
+      pastel = described_class.new(eachline: "\n")
+      expect(pastel.red("foo\nbar")).to eq("\e[31mfoo\e[0m\n\e[31mbar\e[0m")
+    end
   end
 end

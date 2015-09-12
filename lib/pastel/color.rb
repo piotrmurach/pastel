@@ -13,11 +13,14 @@ module Pastel
     attr_reader :enabled
     alias_method :enabled?, :enabled
 
+    attr_reader :eachline
+
     # Initialize a Terminal Color
     #
     # @api public
     def initialize(options = {})
       @enabled = options.fetch(:enabled) { TTY::Screen.color? }
+      @eachline = options.fetch(:eachline) { false }
     end
 
     # Disable coloring of this terminal session
@@ -46,13 +49,37 @@ module Pastel
       return string if string.empty? || !enabled
 
       ansi_colors = lookup(*colors)
-      ansi_string = "#{ansi_colors}#{string}#{clear}"
+      ansi_string = wrap_eachline(string, ansi_colors)
       ansi_string = nest_color(collapse_reset(ansi_string), ansi_colors)
       ansi_string
     end
 
+    # Reset sequence
+    #
+    # @api public
     def clear
       lookup(:clear)
+    end
+
+    # Wraps eachline with clear character
+    #
+    # @param [String] string
+    #   string to wrap with multiline characters
+    #
+    # @param [String] ansi_colors
+    #   colors to apply to string
+    #
+    # @return [String]
+    #
+    # @api private
+    def wrap_eachline(string, ansi_colors)
+      if eachline
+        string.split(eachline).map do |line|
+          "#{ansi_colors}#{line}#{clear}"
+        end.join(eachline)
+      else
+        "#{ansi_colors}#{string}#{clear}"
+      end
     end
 
     # Collapse reset
@@ -85,7 +112,7 @@ module Pastel
     def nest_color(string, ansi_colors)
       ansi_string = string.dup
       matches = ansi_string.scan(/#{Regexp.quote(clear)}/)
-      if matches.length > 1
+      if matches.length > 1 && !eachline
         ansi_string.sub!(/#{Regexp.quote(clear)}/, ansi_colors)
       end
       ansi_string

@@ -38,6 +38,21 @@ RSpec.describe Pastel::Color, '.decorate' do
     expect(decorated).to eq("\e[32m#{string}\e[31m#{string}\e[32m#{string}\e[0m")
   end
 
+  it "decorates multiline string as regular by default" do
+    string = "foo\nbar\nbaz"
+    expect(color.decorate(string, :red)).to eq("\e[31mfoo\nbar\nbaz\e[0m")
+  end
+
+  it "allows to decorate each line separately" do
+    string = "foo\nbar\nbaz"
+    color = described_class.new(eachline: "\n")
+    expect(color.decorate(string, :red)).to eq([
+      "\e[31mfoo\e[0m",
+      "\e[31mbar\e[0m",
+      "\e[31mbaz\e[0m"
+    ].join("\n"))
+  end
+
   it 'errors for unknown color' do
     expect {
       color.decorate(string, :crimson)
