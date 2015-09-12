@@ -8,7 +8,7 @@ module Pastel
 
     ALIASES = {}
 
-    ANSI_REGEX = /(\[)?\033(\[)?[;?\d]*[\dA-Za-z](\])?/.freeze
+    ANSI_REGEX = /(\[)?\033(\[)?[:;?\d]*[\dA-Za-z](\])?/.freeze
 
     attr_reader :enabled
     alias_method :enabled?, :enabled
@@ -147,6 +147,19 @@ module Pastel
       modified.size == 1 ? modified[0] : modified
     end
 
+    # Check if string has color escape codes
+    #
+    # @param [String] string
+    #   the string to check for color strings
+    #
+    # @return [Boolean]
+    #   true when string contains color codes, false otherwise
+    #
+    # @api public
+    def colored?(string)
+      !ANSI_REGEX.match(string).nil?
+    end
+
     # Return raw color code without embeding it into a string.
     #
     # @return [Array[String]]
@@ -166,7 +179,7 @@ module Pastel
       attribute
     end
 
-    # Find color representation.
+    # Find the escape code for color attribute.
     #
     # @param [Symbol,String] colors
     #   the color name(s) to lookup
