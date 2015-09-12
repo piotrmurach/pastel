@@ -55,7 +55,8 @@ Or install it yourself as:
   * [2.5 Styles](#25-styles)
   * [2.6 Valid?](#26-valid)
   * [2.7 Enabled?](#27-enabled)
-  * [2.8 Alias Color](#28-alias-color)
+  * [2.8 Eachline](#28-eachline)
+  * [2.9 Alias Color](#29-alias-color)
 * [3. Supported Colors](#3-supported-colors)
 * [4. Environment](#4-environment)
 
@@ -109,6 +110,12 @@ pastel.red.on_green('Unicorns') {
 }
 ```
 
+When dealing with multiline strings you can set `eachline` option(more info see [eachline](#28-eachline)):
+
+```
+pastel = Pastel.new(eachline: "\n")
+```
+
 You can also predefine needed styles and reuse them:
 
 ```ruby
@@ -141,7 +148,7 @@ This method is a lower level string styling call that takes as the first argumen
 pastel.decorate('Unicorn', :green, :on_blue, :bold)
 ```
 
-This method will be useful in situations where colors are provided as a list of parameters have been generated dynamically.
+This method will be useful in situations where colors are provided as a list of parameters that have been generated dynamically.
 
 ### 2.3 Detach
 
@@ -155,7 +162,7 @@ puts notice.call('They are super wild')
 
 ### 2.4 Strip
 
-Strip all color sequence characters from the provided strings. The return value will be eithre array of modified strings or a single string. The arguments are not modified.
+Strip only color sequence characters from the provided strings and preserve any movement codes or other escape sequences. The return value will be either array of modified strings or a single string. The arguments are not modified.
 
 ```ruby
 pastel.strip("\e[1m\e[34mbold blue text\e[0m")  # => "bold blue text"
@@ -193,7 +200,16 @@ pastel = Pastel.new(enabled: true)
 pastel.enabled?   # => false
 ```
 
-### 2.8 Alias Color
+### 2.8 Eachline
+
+Normally **Pastel** colors string by putting color codes at the beginning and end of the string, but if you provide `eachline` option set to some string, that string will be considered the line delimiter. Consequently, each line will be separately colored with escape sequence and reset code at the end. This option is desirable if the output string contains newlines and you're using background colors. Since color code that spans more than one line is often interpreted by terminal as providing background for all the lines that follow. This in turn may cause programs such as pagers to spill the colors throughout the text. In most cases you will want to set `eachline` to `\n` character like so:
+
+```ruby
+pastel = Pastel.new(eachline: "\n")
+pastel.red("foo\nbar")  # => "\e[31mfoo\e[0m\n\e[31mbar\e[0m"
+```
+
+### 2.9 Alias Color
 
 In order to setup an alias for the standard color do:
 
