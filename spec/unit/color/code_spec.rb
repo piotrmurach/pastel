@@ -18,4 +18,9 @@ RSpec.describe Pastel::Color, '.code' do
   it "doesn't find code" do
     expect { color.code(:unkown) }.to raise_error(ArgumentError)
   end
+
+  it "finds alias code" do
+    color.alias_color(:funky, :red)
+    expect(color.code(:funky)).to eq(color.code(:red))
+  end
 end
