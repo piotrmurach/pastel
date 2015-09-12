@@ -121,7 +121,9 @@ puts warning('Warning')
 
 ## 2 Interface
 
-### 2.1 Color pastel.<color>[.<color>...](string, [string...])
+### 2.1 Color
+
+pastel.`<color>[.<color>...](string, [string...])`
 
 Color styles are invoked as method calls with a string argument. A given color can take any number of strings as arguments. Then it returns a colored string which isn't printed out to terminal. You need to print it yourself if you need to. This is done so that you can save it as a string, pass to something else, send it to a file handle and so on.
 
