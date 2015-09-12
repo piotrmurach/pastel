@@ -1,3 +1,6 @@
+<h1 align="center">
+  <img width="215" src="https://github.com/peter-murach/pastel/raw/master/assets/pastel_logo.svg" alt="pastel logo" />
+</h1>
 # Pastel
 [![Gem Version](https://badge.fury.io/rb/pastel.png)][gem]
 [![Build Status](https://secure.travis-ci.org/peter-murach/pastel.png?branch=master)][travis]
@@ -61,7 +64,7 @@ Or install it yourself as:
 ```ruby
 pastel = Pastel.new
 
-puts pastel.red('Unicorns!')
+pastel.red('Unicorns!')
 ```
 
 You can compose multiple styles through chainable API:
@@ -116,9 +119,9 @@ puts warning('Warning')
 
 ## 2 Interface
 
-### 2.1 Color
+### 2.1 Color pastel.<color>[.<color>...](string, [string...])
 
-You can pass variable number of styled strings like so:
+Color styles are invoked as method calls with a string argument. A given color can take any number of strings as arguments. Then it returns a colored string which isn't printed out to terminal. You need to print it yourself if you need to. This is done so that you can save it as a string, pass to something else, send it to a file handle and so on.
 
 ```ruby
 pastel.red('Unicorns ', pastel.bold.underline('everywhere'), '!')
@@ -128,13 +131,13 @@ Please refer to [3. Supported Colors](#3-supported-colors) section for full list
 
 ### 2.2 Decorate
 
-This method is a lower level string styling call that takes as the first argument the string to style and any number of attributes, and returns string wrapped in styles.
+This method is a lower level string styling call that takes as the first argument the string to style followed by any number of color attributes, and returns string wrapped in styles.
 
 ```ruby
 pastel.decorate('Unicorn', :green, :on_blue, :bold)
 ```
 
-This method will be useful in situations where colors are provided as a list of parameters.
+This method will be useful in situations where colors are provided as a list of parameters have been generated dynamically.
 
 ### 2.3 Detach
 
@@ -283,4 +286,4 @@ PASTEL_COLORS_ALIASES='newcolor_1=red,newcolor_2=on_green'
 
 ## Copyright
 
-Copyright (c) 2014 Piotr Murach. See LICENSE for further details.
+Copyright (c) 2014-2015 Piotr Murach. See LICENSE for further details.
