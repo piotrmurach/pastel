@@ -1,16 +1,18 @@
-<h1 align="center">
-  <img width="215" src="https://github.com/peter-murach/pastel/raw/master/assets/pastel_logo.svg" alt="pastel logo" />
-</h1>
+<div align="center">
+  <img width="215" src="https://cdn.rawgit.com/peter-murach/pastel/master/assets/pastel_logo.svg" alt="pastel logo" />
+</div>
 # Pastel
-[![Gem Version](https://badge.fury.io/rb/pastel.png)][gem]
-[![Build Status](https://secure.travis-ci.org/peter-murach/pastel.png?branch=master)][travis]
-[![Code Climate](https://codeclimate.com/github/peter-murach/pastel.png)][codeclimate]
-[![Coverage Status](https://coveralls.io/repos/peter-murach/pastel/badge.png)][coverage]
+[![Gem Version](https://badge.fury.io/rb/pastel.svg)][gem]
+[![Build Status](https://secure.travis-ci.org/peter-murach/pastel.svg?branch=master)][travis]
+[![Code Climate](https://codeclimate.com/github/peter-murach/pastel/badges/gpa.svg)][codeclimate]
+[![Coverage Status](https://coveralls.io/repos/peter-murach/pastel/badge.svg)][coverage]
+[![Inline docs](http://inch-ci.org/github/peter-murach/tty.svg?branch=master)][inchpages]
 
 [gem]: http://badge.fury.io/rb/pastel
 [travis]: http://travis-ci.org/peter-murach/pastel
 [codeclimate]: https://codeclimate.com/github/peter-murach/pastel
 [coverage]: https://coveralls.io/r/peter-murach/pastel
+[inchpages]: http://inch-ci.org/github/peter-murach/pastel
 
 > Terminal output styling with intuitive and clean API that doesn't monkey patch String class.
 
