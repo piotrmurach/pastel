@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="215" src="https://cdn.rawgit.com/peter-murach/pastel/master/assets/pastel_logo.svg" alt="pastel logo" />
+  <img width="215" src="https://cdn.rawgit.com/peter-murach/pastel/master/assets/pastel_logo.png" alt="pastel logo" />
 </div>
 # Pastel
 [![Gem Version](https://badge.fury.io/rb/pastel.svg)][gem]
