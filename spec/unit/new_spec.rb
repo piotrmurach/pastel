@@ -93,6 +93,12 @@ RSpec.describe Pastel do
     end
   end
 
+  describe '.colored?' do
+    it "checks if string is colored" do
+      expect(pastel.colored?("\e[31mfoo\e[0m")).to eq(true)
+    end
+  end
+
   describe 'options passed in' do
     it "receives enabled option" do
       pastel = described_class.new(enabled: false)

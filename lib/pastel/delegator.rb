@@ -10,7 +10,7 @@ module Pastel
     include Equatable
 
     def_delegators '@resolver.color', :valid?, :styles, :strip, :decorate,
-                   :enabled?, :alias_color
+                   :enabled?, :colored?, :alias_color
 
     # Create Delegator
     #
