@@ -167,7 +167,10 @@ module Pastel
     # @param [Array[Symbol,String]]
     #   the list of colors to check
     #
-    # @reutrn [Boolean]
+    # @example
+    #   valid?(:red)   # => true
+    #
+    # @return [Boolean]
     #   true if all colors are valid, false otherwise
     #
     # @api public
