@@ -28,6 +28,7 @@
 * Intuitive and expressive API
 * Minimal and focused to work on all terminal emulators
 * Auto-detection of color support
+* Allows nested styles
 * Performant
 
 ## Installation
@@ -54,9 +55,10 @@ Or install it yourself as:
   * [2.4 Strip](#24-strip)
   * [2.5 Styles](#25-styles)
   * [2.6 Valid?](#26-valid)
-  * [2.7 Enabled?](#27-enabled)
-  * [2.8 Eachline](#28-eachline)
-  * [2.9 Alias Color](#29-alias-color)
+  * [2.7 Colored?](#27-colored)
+  * [2.8 Enabled?](#28-enabled)
+  * [2.9 Eachline](#29-eachline)
+  * [2.10 Alias Color](#30-alias-color)
 * [3. Supported Colors](#3-supported-colors)
 * [4. Environment](#4-environment)
 
@@ -110,7 +112,7 @@ pastel.red.on_green('Unicorns') {
 }
 ```
 
-When dealing with multiline strings you can set `eachline` option(more info see [eachline](#28-eachline)):
+When dealing with multiline strings you can set `eachline` option(more info see [eachline](#29-eachline)):
 
 ```
 pastel = Pastel.new(eachline: "\n")
@@ -185,7 +187,15 @@ pastel.valid?(:red, :blue) # => true
 pastel.valid?(:unicorn)    # => false
 ```
 
-### 2.7 Enabled?
+### 2.7 Colored?
+
+In order to determine if string has color escape codes use `colored?` like so
+
+```ruby
+pastel.colored?("\e[31mcolorful\e[0m")  # => true
+```
+
+### 2.8 Enabled?
 
 In order to detect if your terminal supports coloring do:
 
@@ -200,7 +210,7 @@ pastel = Pastel.new(enabled: true)
 pastel.enabled?   # => false
 ```
 
-### 2.8 Eachline
+### 2.9 Eachline
 
 Normally **Pastel** colors string by putting color codes at the beginning and end of the string, but if you provide `eachline` option set to some string, that string will be considered the line delimiter. Consequently, each line will be separately colored with escape sequence and reset code at the end. This option is desirable if the output string contains newlines and you're using background colors. Since color code that spans more than one line is often interpreted by terminal as providing background for all the lines that follow. This in turn may cause programs such as pagers to spill the colors throughout the text. In most cases you will want to set `eachline` to `\n` character like so:
 
@@ -209,7 +219,7 @@ pastel = Pastel.new(eachline: "\n")
 pastel.red("foo\nbar")  # => "\e[31mfoo\e[0m\n\e[31mbar\e[0m"
 ```
 
-### 2.9 Alias Color
+### 2.10 Alias Color
 
 In order to setup an alias for the standard color do:
 
