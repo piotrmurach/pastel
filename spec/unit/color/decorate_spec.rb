@@ -45,7 +45,7 @@ RSpec.describe Pastel::Color, '.decorate' do
 
   it "allows to decorate each line separately" do
     string = "foo\nbar\nbaz"
-    color = described_class.new(eachline: "\n")
+    color = described_class.new(enabled: true, eachline: "\n")
     expect(color.decorate(string, :red)).to eq([
       "\e[31mfoo\e[0m",
       "\e[31mbar\e[0m",
