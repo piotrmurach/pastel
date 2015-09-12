@@ -2,6 +2,7 @@
 
 require 'forwardable'
 require 'equatable'
+require 'tty-screen'
 
 require 'pastel/ansi'
 require 'pastel/alias_importer'

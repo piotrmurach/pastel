@@ -15,7 +15,7 @@ module Pastel
     #
     # @api public
     def initialize(options = {})
-      @enabled = options.fetch(:enabled) { supports? }
+      @enabled = options.fetch(:enabled) { TTY::Screen.color? }
     end
 
     # Disable coloring of this terminal session
@@ -23,23 +23,6 @@ module Pastel
     # @api public
     def disable!
       @enabled = false
-    end
-
-    # Detect terminal color support
-    #
-    # @return [Boolean]
-    #   true when terminal supports color, false otherwise
-    #
-    # @api public
-    def supports?
-      return false unless $stdout.tty?
-      return false if ENV['TERM'] == 'dumb'
-      if ENV['TERM'] =~ /^screen|^xterm|^vt100|color|ansi|cygwin|linux/i
-        return true
-      end
-      return true if %x(tput colors 2>/dev/null).to_i > 2
-      return true if ENV.include?('COLORTERM')
-      true
     end
 
     # Apply ANSI color to the given string.
