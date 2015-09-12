@@ -8,6 +8,8 @@ module Pastel
 
     ALIASES = {}
 
+    ANSI_REGEX = /(\[)?\033(\[)?[;?\d]*[\dA-Za-z](\])?/.freeze
+
     attr_reader :enabled
     alias_method :enabled?, :enabled
 
@@ -101,14 +103,21 @@ module Pastel
 
     # Strip ANSI color codes from a string.
     #
-    # @param [String] string
-    #   the string to sanitize
+    # Only ANSI color codes are removed, not movement codes or
+    # other escapes sequences are stripped.
+    #
+    # @param [Array[String]] strings
+    #   a string or array of strings to sanitize
+    #
+    # @example
+    #   strip("foo\e[1mbar\e[0m")  # => "foobar"
     #
     # @return [String]
     #
     # @api public
-    def strip(string)
-      string.to_s.gsub(/(\[)?\033(\[)?[;?\d]*[\dA-Za-z](\])?/, '')
+    def strip(*strings)
+      modified = strings.map { |string| string.dup.gsub(ANSI_REGEX, '') }
+      modified.size == 1 ? modified[0] : modified
     end
 
     # Return raw color code without embeding it into a string.

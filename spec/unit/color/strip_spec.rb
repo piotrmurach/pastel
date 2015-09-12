@@ -3,45 +3,51 @@
 require 'spec_helper'
 
 RSpec.describe Pastel::Color, '.strip' do
-  let(:instance) { described_class.new(enabled: true) }
 
-  subject(:color) { instance.strip(string) }
+  subject(:color) { described_class.new(enabled: true) }
 
-  context 'with ansi colors' do
-    let(:string)   { "This is a \e[1m\e[34mbold blue text\e[0m" }
-
-    it 'removes color from string' do
-      is_expected.to eq('This is a bold blue text')
-    end
+  it 'strips ansi color from string' do
+    string = "This is a \e[1m\e[34mbold blue text\e[0m"
+    expect(color.strip(string)).to eq('This is a bold blue text')
   end
 
-  context 'with octal in encapsulating brackets' do
-    let(:string) { "\[\033[01;32m\]u@h \[\033[01;34m\]W $ \[\033[00m\]" }
-
-    it { is_expected.to eq('u@h W $ ') }
+  it "strips partial ansi color" do
+    string = "foo\e[1mbar"
+    expect(color.strip(string)).to eq('foobar')
   end
 
-  context 'with octal without brackets' do
-    let(:string) { "\033[01;32mu@h \033[01;34mW $ \033[00m" }
-
-    it { is_expected.to eq('u@h W $ ') }
+  it 'preserves movement characters' do
+    # [176A - move cursor up n lines
+    expect(color.strip("foo[176Abar")).to eq('foo[176Abar')
   end
 
-  context 'with octal with multiple colors' do
-    let(:string) { "\e[3;0;0;t\e[8;50;0t" }
-
-    it { is_expected.to eq('') }
+  it 'strips reset/setfg/setbg/italics/strike/underline sequence' do
+    string = "\x1b[0;33;49;3;9;4mfoo\x1b[0m"
+    expect(color.strip(string)).to eq("foo")
   end
 
-  context 'with control codes' do
-    let(:string ) { "WARN. \x1b[1m&\x1b[0m ERR. \x1b[7m&\x1b[0m" }
-
-    it { is_expected.to eq('WARN. & ERR. &') }
+  it 'strips octal in encapsulating brackets' do
+    string = "\[\033[01;32m\]u@h \[\033[01;34m\]W $ \[\033[00m\]"
+    expect(color.strip(string)).to eq('u@h W $ ')
   end
 
-  context 'with escape byte' do
-    let(:string) { "This is a \e[1m\e[34mbold blue text\e[0m" }
+  it 'strips octal codes without brackets' do
+    string = "\033[01;32mu@h \033[01;34mW $ \033[00m"
+    expect(color.strip(string)).to eq('u@h W $ ')
+  end
 
-    it { is_expected.to eq("This is a bold blue text") }
+  it 'strips octal with multiple colors' do
+    string = "\e[3;0;0;tfoo\e[8;50;0t"
+    expect(color.strip(string)).to eq('foo')
+  end
+
+  it 'strips control codes' do
+    string = "WARN. \x1b[1m&\x1b[0m ERR. \x1b[7m&\x1b[0m"
+    expect(color.strip(string)).to eq('WARN. & ERR. &')
+  end
+
+  it 'strips escape bytes' do
+    string = "This is a \e[1m\e[34mbold blue text\e[0m"
+    expect(color.strip(string)).to eq("This is a bold blue text")
   end
 end
