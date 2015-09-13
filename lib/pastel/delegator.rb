@@ -35,10 +35,13 @@ module Pastel
 
     # Object string representation
     #
+    # @return [String]
+    #
     # @api
     def inspect
-      "<##{self.class.name}>"
+      "#<Pastel @styles=#{base.map(&:to_s)}>"
     end
+    alias_method :to_s, :inspect
 
     protected
 
