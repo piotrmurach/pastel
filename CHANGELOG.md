@@ -1,10 +1,11 @@
 0.5.0 (Sept 13, 2015)
 
 * Add external dependency to check for color support
-* Add ability to check for ansi string
-* Add ability to extract colors from string
-* Add eachline option to allow coloring of multiline strings
+* Add #colored? to check if string has color escape codes
+* Add #eachline option to allow coloring of multiline strings
+* Further refine #strip method accuracy
 * Fix redefining inspect method
+* Fix string representation for pastel instance
 
 0.4.0 (November 22, 2014)
 
