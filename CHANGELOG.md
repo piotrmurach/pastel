@@ -1,3 +1,11 @@
+0.5.0 (Sept 13, 2015)
+
+* Add external dependency to check for color support
+* Add ability to check for ansi string
+* Add ability to extract colors from string
+* Add eachline option to allow coloring of multiline strings
+* Fix redefining inspect method
+
 0.4.0 (November 22, 2014)
 
 * Fix Delegator#respond_to method to correctly report existence of methods
