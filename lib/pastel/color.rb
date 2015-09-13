@@ -119,15 +119,6 @@ module Pastel
     end
     private :collapse_reset, :nest_color
 
-    # Same as instance method.
-    #
-    # @return [String]
-    #
-    # @api public
-    def self.decorate(string, *colors)
-      new.decorate(string, *colors)
-    end
-
     # Strip ANSI color codes from a string.
     #
     # Only ANSI color codes are removed, not movement codes or
