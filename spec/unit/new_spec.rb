@@ -6,6 +6,10 @@ RSpec.describe Pastel do
 
   subject(:pastel) { described_class.new(enabled: true) }
 
+  it "" do
+    expect(pastel.red).to be_a(Pastel::Delegator)
+  end
+
   describe 'coloring string' do
     it "doesn't apply styles to empty string" do
       expect(pastel.red('')).to eq('')

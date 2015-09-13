@@ -21,6 +21,7 @@ module Pastel
     def initialize(options = {})
       @enabled = options.fetch(:enabled) { TTY::Screen.color? }
       @eachline = options.fetch(:eachline) { false }
+      freeze
     end
 
     # Disable coloring of this terminal session
