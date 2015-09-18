@@ -5,6 +5,14 @@ module Pastel
   class Detached
     include Equatable
 
+    # Initialize a detached object
+    #
+    # @param [Pastel::Color] color
+    #   the color instance
+    # @param [Array[Symbol]] styles
+    #   the styles to be applied
+    #
+    # @api private
     def initialize(color, *styles)
       @color  = color
       @styles = styles.dup
@@ -24,6 +32,12 @@ module Pastel
     def call(*args)
       value = args.join
       @color.decorate(value, *styles)
+    end
+    alias_method :[], :call
+
+    # @api public
+    def to_proc
+      self
     end
 
     private
