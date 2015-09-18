@@ -1,3 +1,7 @@
+0.5.1 (Sept 18, 2015)
+
+* Add ability to call detached instance with array access
+
 0.5.0 (Sept 13, 2015)
 
 * Add external dependency to check for color support
