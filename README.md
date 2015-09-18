@@ -124,8 +124,8 @@ You can also predefine needed styles and reuse them:
 error    = pastel.red.on_bold.detach
 warning  = pastel.yellow.detach
 
-puts error('Error!')
-puts warning('Warning')
+puts error.('Error!')
+puts warning.('Warning')
 ```
 
 ## 2 Interface
@@ -154,12 +154,14 @@ This method will be useful in situations where colors are provided as a list of 
 
 ### 2.3 Detach
 
-The `detach` method allows to keep all the coloring for later reference. This method is useful when detached colors are being reused frequently and thus shorthand version is preferred.
+The `detach` method allows to keep all the associated colors with the detached instance for later reference. This method is useful when detached colors are being reused frequently and thus shorthand version is preferred. The detached object can be invoked using `call` method or it's shorthand `.()`, as well as array like access `[]`. For example, the following are equivalent examples of detaching colors:
 
 ```ruby
 notice = pastel.blue.bold.detach
-puts notice.call('Unicorns running')
-puts notice.call('They are super wild')
+
+notice.call('Unicorns running')
+notice.('Unicorns running')
+notice['Unicorns running']
 ```
 
 ### 2.4 Strip
