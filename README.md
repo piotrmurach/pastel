@@ -154,7 +154,7 @@ This method will be useful in situations where colors are provided as a list of 
 
 ### 2.3 Detach
 
-The `detach` method allows to keep all the coloring for later reference. This method is useful when detached colors are being resued frequently and thus shorthand version is preferred.
+The `detach` method allows to keep all the coloring for later reference. This method is useful when detached colors are being reused frequently and thus shorthand version is preferred.
 
 ```ruby
 notice = pastel.blue.bold.detach
