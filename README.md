@@ -121,7 +121,7 @@ pastel = Pastel.new(eachline: "\n")
 You can also predefine needed styles and reuse them:
 
 ```ruby
-error    = pastel.red.on_bold.detach
+error    = pastel.red.bold.detach
 warning  = pastel.yellow.detach
 
 puts error.('Error!')
