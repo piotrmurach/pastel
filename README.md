@@ -209,7 +209,7 @@ In cases when the color support is not provided no styling will be applied to th
 
 ```ruby
 pastel = Pastel.new(enabled: true)
-pastel.enabled?   # => false
+pastel.enabled?   # => true
 ```
 
 ### 2.9 Eachline
