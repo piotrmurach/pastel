@@ -69,8 +69,10 @@ Or install it yourself as:
 ```ruby
 pastel = Pastel.new
 
-pastel.red('Unicorns!')
+puts pastel.red('Unicorns!')
 ```
+
+**Pastel** doesn't print the colored string out, just returns it, you'll have to print it yourself.
 
 You can compose multiple styles through chainable API:
 
