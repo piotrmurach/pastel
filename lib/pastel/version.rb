@@ -1,5 +1,5 @@
 # coding: utf-8
 
 module Pastel
-  VERSION = "0.5.1"
+  VERSION = "0.5.2"
 end
