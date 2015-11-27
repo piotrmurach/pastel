@@ -1,3 +1,7 @@
+0.5.2 (Nov 27, 2015)
+
+* Change Color#decorate to accept non-string values and immediately return
+
 0.5.1 (Sept 18, 2015)
 
 * Add ability to call detached instance with array access
