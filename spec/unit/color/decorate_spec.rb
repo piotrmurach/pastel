@@ -58,4 +58,16 @@ RSpec.describe Pastel::Color, '.decorate' do
       color.decorate(string, :crimson)
     }.to raise_error(Pastel::InvalidAttributeNameError)
   end
+
+  it "doesn't decorate non-string instance" do
+    expect(color.decorate({}, :red)).to eq({})
+  end
+
+  it "doesn't decorate nil" do
+    expect(color.decorate(nil, :red)).to eq(nil)
+  end
+
+  it "doesn't decorate empty string" do
+    expect(color.decorate("  ", :red)).to eq("  ")
+  end
 end

@@ -8,7 +8,9 @@ module Pastel
 
     ALIASES = {}
 
-    ANSI_REGEX = /(\[)?\033(\[)?[:;?\d]*[\dA-Za-z](\])?/.freeze
+    ANSI_REGEX = /(\[)?\033(\[)?[:;?\d]*[\dA-Za-z](\])?/o.freeze
+
+    BLANK_REGEX = /\A[[:space:]]*\z/o.freeze
 
     attr_reader :enabled
     alias_method :enabled?, :enabled
@@ -19,7 +21,7 @@ module Pastel
     #
     # @api public
     def initialize(options = {})
-      @enabled = options.fetch(:enabled) { TTY::Screen.color? }
+      @enabled  = options.fetch(:enabled) { TTY::Screen.color? }
       @eachline = options.fetch(:eachline) { false }
       freeze
     end
@@ -47,7 +49,7 @@ module Pastel
     #
     # @api public
     def decorate(string, *colors)
-      return string if string.empty? || !enabled
+      return string if blank?(string) || !enabled
 
       ansi_colors = lookup(*colors)
       ansi_string = wrap_eachline(string, ansi_colors)
@@ -245,6 +247,17 @@ module Pastel
     end
 
     private
+
+    # Check if value contains anything to style
+    #
+    # @return [Boolean]
+    #
+    # @api private
+    def blank?(value)
+      value.nil? ||
+      value.respond_to?(:empty?) && value.empty? ||
+      BLANK_REGEX =~ value
+    end
 
     # @api private
     def validate(*colors)
