@@ -6,7 +6,7 @@
 [![Build Status](https://secure.travis-ci.org/peter-murach/pastel.svg?branch=master)][travis]
 [![Code Climate](https://codeclimate.com/github/peter-murach/pastel/badges/gpa.svg)][codeclimate]
 [![Coverage Status](https://coveralls.io/repos/peter-murach/pastel/badge.svg)][coverage]
-[![Inline docs](http://inch-ci.org/github/peter-murach/tty.svg?branch=master)][inchpages]
+[![Inline docs](http://inch-ci.org/github/peter-murach/pastel.svg?branch=master)][inchpages]
 
 [gem]: http://badge.fury.io/rb/pastel
 [travis]: http://travis-ci.org/peter-murach/pastel
