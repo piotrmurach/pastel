@@ -1,6 +1,6 @@
 # coding: utf-8
 
-RSpec.describe Pastel, '.alias_color' do
+RSpec.describe Pastel, '#alias_color' do
 
   subject(:pastel) { described_class.new(enabled: true) }
 

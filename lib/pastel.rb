@@ -31,7 +31,7 @@ module Pastel
   def new(options = {})
     defaults = { enabled: TTY::Color.color? }
     color    = Color.new(defaults.merge(options))
-    importer = AliasImporter.new(color)
+    importer = AliasImporter.new(color, ENV)
     importer.import
     resolver = ColorResolver.new(color)
     Delegator.for(resolver, DecoratorChain.empty)

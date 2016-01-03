@@ -6,11 +6,12 @@ module Pastel
     # Create alias importer
     #
     # @example
-    #   importer = Pastel::AliasImporter.new(Pastel::Color.new)
+    #   importer = Pastel::AliasImporter.new(Pastel::Color.new, {})
     #
     # @api public
-    def initialize(color, output = $stderr)
+    def initialize(color, env, output = $stderr)
       @color  = color
+      @env    = env
       @output = output
     end
 
@@ -24,7 +25,7 @@ module Pastel
     #
     # @api public
     def import
-      color_aliases = ENV['PASTEL_COLORS_ALIASES']
+      color_aliases = env['PASTEL_COLORS_ALIASES']
       return unless color_aliases
       color_aliases.split(',').each do |color_alias|
         new_color, old_color = color_alias.split('=').map(&:to_sym)
@@ -38,6 +39,6 @@ module Pastel
 
     protected
 
-    attr_reader :color, :output
+    attr_reader :color, :output, :env
   end # AliasImporter
 end # Pastel
