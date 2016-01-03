@@ -171,7 +171,7 @@ notice['Unicorns running']
 Strip only color sequence characters from the provided strings and preserve any movement codes or other escape sequences. The return value will be either array of modified strings or a single string. The arguments are not modified.
 
 ```ruby
-pastel.strip("\e[1m\e[34mbold blue text\e[0m")  # => "bold blue text"
+pastel.strip("\e[1A\e[1m\e[34mbold blue text\e[0m")  # => "\e[1Abold blue text"
 ```
 
 ### 2.5 Styles
@@ -320,4 +320,4 @@ PASTEL_COLORS_ALIASES='newcolor_1=red,newcolor_2=on_green'
 
 ## Copyright
 
-Copyright (c) 2014-2015 Piotr Murach. See LICENSE for further details.
+Copyright (c) 2014-2016 Piotr Murach. See LICENSE for further details.
