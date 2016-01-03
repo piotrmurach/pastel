@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-require 'spec_helper'
-
 RSpec.describe Pastel::Color, '.valid?' do
   it "detects valid colors" do
     color = described_class.new

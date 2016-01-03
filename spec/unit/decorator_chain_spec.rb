@@ -1,7 +1,5 @@
 # coding: utf-8
 
-require 'spec_helper'
-
 RSpec.describe Pastel::DecoratorChain do
   it "is enumerable" do
     expect(described_class.new).to be_a(Enumerable)

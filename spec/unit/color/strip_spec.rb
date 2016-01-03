@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-require 'spec_helper'
-
 RSpec.describe Pastel::Color, '.strip' do
 
   subject(:color) { described_class.new(enabled: true) }

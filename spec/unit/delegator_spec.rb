@@ -1,7 +1,5 @@
 # coding: utf-8
 
-require 'spec_helper'
-
 RSpec.describe Pastel::Delegator do
 
   it "returns delegator for color without argument" do

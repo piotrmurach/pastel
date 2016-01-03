@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-require 'spec_helper'
-
 RSpec.describe Pastel::Color, '.new' do
   it "is immutable" do
     expect(described_class.new).to be_frozen

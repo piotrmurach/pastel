@@ -1,7 +1,5 @@
 # coding: utf-8
 
-require 'spec_helper'
-
 RSpec.describe Pastel, '.detach' do
 
   subject(:pastel) { described_class.new(enabled: true) }

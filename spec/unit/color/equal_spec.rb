@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-require 'spec_helper'
-
 RSpec.describe Pastel::Color, '#==' do
   it "is true with the same enabled and eachline attributes" do
     expect(Pastel::Color.new(enabled: false, eachline: "\n")).

@@ -1,7 +1,5 @@
 # coding: utf-8
 
-require 'spec_helper'
-
 RSpec.describe Pastel::AliasImporter, '.import' do
   let(:color) { spy(:color, alias_color: true) }
   let(:output) { StringIO.new }
