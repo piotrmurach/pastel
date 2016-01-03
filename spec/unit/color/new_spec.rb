@@ -15,10 +15,10 @@ RSpec.describe Pastel::Color, '.new' do
   end
 
   it "invokes screen dependency to check color support" do
-    allow(TTY::Screen).to receive(:color?).and_return(true)
+    allow(TTY::Color).to receive(:color?).and_return(true)
     color = described_class.new
 
     expect(color.enabled?).to eq(true)
-    expect(TTY::Screen).to have_received(:color?)
+    expect(TTY::Color).to have_received(:color?)
   end
 end

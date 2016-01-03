@@ -21,7 +21,7 @@ module Pastel
     #
     # @api public
     def initialize(options = {})
-      @enabled  = options.fetch(:enabled) { TTY::Screen.color? }
+      @enabled  = options.fetch(:enabled) { TTY::Color.color? }
       @eachline = options.fetch(:eachline) { false }
       freeze
     end
