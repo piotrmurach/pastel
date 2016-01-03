@@ -29,7 +29,8 @@ module Pastel
   #
   # @api public
   def new(options = {})
-    color    = Color.new(options)
+    defaults = { enabled: TTY::Color.color? }
+    color    = Color.new(defaults.merge(options))
     importer = AliasImporter.new(color)
     importer.import
     resolver = ColorResolver.new(color)

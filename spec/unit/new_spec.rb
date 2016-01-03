@@ -100,7 +100,16 @@ RSpec.describe Pastel do
   end
 
   describe 'options passed in' do
-    it "receives enabled option" do
+    it 'defaults enabled to color detection' do
+      allow(TTY::Color).to receive(:color?).and_return(true)
+
+      pastel = described_class.new
+
+      expect(pastel.enabled?).to eq(true)
+      expect(TTY::Color).to have_received(:color?)
+    end
+
+    it "sets enabled option" do
       pastel = described_class.new(enabled: false)
       expect(pastel.enabled?).to eq(false)
       expect(pastel.red('Unicorn', pastel.green('!'))).to eq('Unicorn!')
