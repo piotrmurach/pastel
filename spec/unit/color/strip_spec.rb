@@ -16,7 +16,7 @@ RSpec.describe Pastel::Color, '.strip' do
 
   it 'preserves movement characters' do
     # [176A - move cursor up n lines
-    expect(color.strip("foo\e[176Abar")).to eq('foobar')
+    expect(color.strip("foo\e[176Abar")).to eq("foo\e[176Abar")
   end
 
   it 'strips reset/setfg/setbg/italics/strike/underline sequence' do
@@ -26,7 +26,7 @@ RSpec.describe Pastel::Color, '.strip' do
 
   it 'strips octal in encapsulating brackets' do
     string = "\[\033[01;32m\]u@h \[\033[01;34m\]W $ \[\033[00m\]"
-    expect(color.strip(string)).to eq('u@h W $ ')
+    expect(color.strip(string)).to eq('[]u@h []W $ []')
   end
 
   it 'strips octal codes without brackets' do
@@ -35,7 +35,7 @@ RSpec.describe Pastel::Color, '.strip' do
   end
 
   it 'strips octal with multiple colors' do
-    string = "\e[3;0;0;tfoo\e[8;50;0t"
+    string = "\e[3;0;0;mfoo\e[8;50;0m"
     expect(color.strip(string)).to eq('foo')
   end
 

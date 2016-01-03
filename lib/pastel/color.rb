@@ -6,9 +6,11 @@ module Pastel
     include Equatable
     include ANSI
 
+    # All color aliases
     ALIASES = {}
 
-    ANSI_REGEX = /(\[)?\033(\[)?[:;?\d]*[\dA-Za-z](\])?/o.freeze
+    # Match all color escape sequences
+    ANSI_COLOR_REGEXP = /\x1b+(\[|\[\[)[0-9;:?]+m/mo.freeze
 
     BLANK_REGEX = /\A[[:space:]]*\z/o.freeze
 
@@ -137,7 +139,7 @@ module Pastel
     #
     # @api public
     def strip(*strings)
-      modified = strings.map { |string| string.dup.gsub(ANSI_REGEX, '') }
+      modified = strings.map { |string| string.dup.gsub(ANSI_COLOR_REGEXP, '') }
       modified.size == 1 ? modified[0] : modified
     end
 
@@ -151,7 +153,7 @@ module Pastel
     #
     # @api public
     def colored?(string)
-      !ANSI_REGEX.match(string).nil?
+      !ANSI_COLOR_REGEXP.match(string).nil?
     end
 
     # Return raw color code without embeding it into a string.
