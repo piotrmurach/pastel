@@ -52,5 +52,19 @@ module Pastel
       on_bright_cyan:    106,
       on_bright_white:   107
     }
+
+    module_function
+
+    def foreground?(code)
+      [*(30..37), *(90..97)].include?(code.to_i)
+    end
+
+    def background?(code)
+      [*(40..47), *(100..107)].include?(code.to_i)
+    end
+
+    def style?(code)
+      (1..9).include?(code.to_i)
+    end
   end # ANSI
 end # Pastel
