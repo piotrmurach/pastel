@@ -51,7 +51,7 @@ module Pastel
     #
     # @api public
     def decorate(string, *colors)
-      return string if blank?(string) || !enabled
+      return string if blank?(string) || !enabled || colors.empty?
 
       ansi_colors = lookup(*colors)
       ansi_string = wrap_eachline(string, ansi_colors)

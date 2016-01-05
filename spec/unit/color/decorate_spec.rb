@@ -14,6 +14,10 @@ RSpec.describe Pastel::Color, '.decorate' do
     expect(color.decorate('')).to eq('')
   end
 
+  it "doesn't decorate without color" do
+    expect(color.decorate(string)).to eq(string)
+  end
+
   it 'applies green text to string' do
     expect(color.decorate(string, :green)).to eq("\e[32m#{string}\e[0m")
   end
