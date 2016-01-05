@@ -51,14 +51,15 @@ Or install it yourself as:
 * [2. Interface](#2-interface)
   * [2.1 Color](#21-color)
   * [2.2 Decorate](#22-decorate)
-  * [2.3 Detach](#23-detach)
-  * [2.4 Strip](#24-strip)
-  * [2.5 Styles](#25-styles)
-  * [2.6 Valid?](#26-valid)
-  * [2.7 Colored?](#27-colored)
-  * [2.8 Enabled?](#28-enabled)
-  * [2.9 Eachline](#29-eachline)
-  * [2.10 Alias Color](#30-alias-color)
+  * [2.3 Undecorate](#23-undecorate)
+  * [2.4 Detach](#24-detach)
+  * [2.5 Strip](#25-strip)
+  * [2.6 Styles](#26-styles)
+  * [2.7 Valid?](#27-valid)
+  * [2.8 Colored?](#28-colored)
+  * [2.9 Enabled?](#29-enabled)
+  * [2.10 Eachline](#210-eachline)
+  * [2.11 Alias Color](#211-alias-color)
 * [3. Supported Colors](#3-supported-colors)
 * [4. Environment](#4-environment)
 
@@ -154,7 +155,16 @@ pastel.decorate('Unicorn', :green, :on_blue, :bold)
 
 This method will be useful in situations where colors are provided as a list of parameters that have been generated dynamically.
 
-### 2.3 Detach
+### 2.3 Undecorate
+
+It performs the opposite to `decorate` method by turning color escape sequences found in the string into a list of hash objects corresponding with the attribute names set by those sequences. The hash objects contain `:foreground`, `:background`, `:text` and `:style` keys.
+
+```ruby
+pastel.undecorate("\e[32mfoo\e[0m \e[31mbar\e[0m")
+# => [{foreground: :green, text: 'foo'}, {text: ' '}, {foreground: :red, text: 'bar'}]
+```
+
+### 2.4 Detach
 
 The `detach` method allows to keep all the associated colors with the detached instance for later reference. This method is useful when detached colors are being reused frequently and thus shorthand version is preferred. The detached object can be invoked using `call` method or it's shorthand `.()`, as well as array like access `[]`. For example, the following are equivalent examples of detaching colors:
 
@@ -166,7 +176,7 @@ notice.('Unicorns running')
 notice['Unicorns running']
 ```
 
-### 2.4 Strip
+### 2.5 Strip
 
 Strip only color sequence characters from the provided strings and preserve any movement codes or other escape sequences. The return value will be either array of modified strings or a single string. The arguments are not modified.
 
@@ -174,7 +184,7 @@ Strip only color sequence characters from the provided strings and preserve any 
 pastel.strip("\e[1A\e[1m\e[34mbold blue text\e[0m")  # => "\e[1Abold blue text"
 ```
 
-### 2.5 Styles
+### 2.6 Styles
 
 To get a full list of supported styles with the corresponding color codes do:
 
@@ -182,7 +192,7 @@ To get a full list of supported styles with the corresponding color codes do:
 pastel.styles
 ```
 
-### 2.6 Valid?
+### 2.7 Valid?
 
 Determine whether a color or a list of colors are valid. `valid?` takes one or more attribute strings or symbols and returns true if all attributes are known and false otherwise.
 
@@ -191,7 +201,7 @@ pastel.valid?(:red, :blue) # => true
 pastel.valid?(:unicorn)    # => false
 ```
 
-### 2.7 Colored?
+### 2.8 Colored?
 
 In order to determine if string has color escape codes use `colored?` like so
 
@@ -199,7 +209,7 @@ In order to determine if string has color escape codes use `colored?` like so
 pastel.colored?("\e[31mcolorful\e[0m")  # => true
 ```
 
-### 2.8 Enabled?
+### 2.9 Enabled?
 
 In order to detect if your terminal supports coloring do:
 
@@ -214,7 +224,7 @@ pastel = Pastel.new(enabled: true)
 pastel.enabled?   # => true
 ```
 
-### 2.9 Eachline
+### 2.10 Eachline
 
 Normally **Pastel** colors string by putting color codes at the beginning and end of the string, but if you provide `eachline` option set to some string, that string will be considered the line delimiter. Consequently, each line will be separately colored with escape sequence and reset code at the end. This option is desirable if the output string contains newlines and you're using background colors. Since color code that spans more than one line is often interpreted by terminal as providing background for all the lines that follow. This in turn may cause programs such as pagers to spill the colors throughout the text. In most cases you will want to set `eachline` to `\n` character like so:
 
@@ -223,7 +233,7 @@ pastel = Pastel.new(eachline: "\n")
 pastel.red("foo\nbar")  # => "\e[31mfoo\e[0m\n\e[31mbar\e[0m"
 ```
 
-### 2.10 Alias Color
+### 2.11 Alias Color
 
 In order to setup an alias for the standard color do:
 
