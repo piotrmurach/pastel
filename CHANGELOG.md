@@ -1,3 +1,7 @@
+0.5.3 (Jan 05, 2015)
+
+* Change gemspec to fix dependencies requirement
+
 0.5.2 (Nov 27, 2015)
 
 * Change Color#decorate to accept non-string values and immediately return
