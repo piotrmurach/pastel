@@ -5,12 +5,18 @@
 ### Changed
 * Change to use tty-color for color capabilities detection
 
+## [v0.5.3] - 2015-01-05
+
+### Fixed
+* Change gemspec to fix dependencies requirement
+
 ## [v0.5.2] - 2015-11-27 (Nov 27, 2015)
 
 * Change Color#decorate to accept non-string values and immediately return
 
 ## [v0.5.1] - 2015-09-18
 
+### Added
 * Add ability to call detached instance with array access
 
 ## [v0.5.0] - 2015-09-13
@@ -61,6 +67,8 @@
 * Change gemspec to include equatable as dependency
 * Change Delegator to stop creating instances and improve performance
 
+[v0.5.3]: https://github.com/peter-murach/pastel/compare/v0.5.2...v0.5.3
+[v0.5.2]: https://github.com/peter-murach/pastel/compare/v0.5.1...v0.5.2
 [v0.5.1]: https://github.com/peter-murach/pastel/compare/v0.5.0...v0.5.1
 [v0.5.0]: https://github.com/peter-murach/pastel/compare/v0.4.0...v0.5.0
 [v0.4.0]: https://github.com/peter-murach/pastel/compare/v0.3.0...v0.4.0
