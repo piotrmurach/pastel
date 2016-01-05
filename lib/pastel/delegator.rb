@@ -12,6 +12,9 @@ module Pastel
     def_delegators '@resolver.color', :valid?, :styles, :strip, :decorate,
                    :enabled?, :colored?, :alias_color
 
+    def_delegators ColorParser, :parse
+    alias_method :undecorate, :parse
+
     # Create Delegator
     #
     # Used internally by {Pastel}
