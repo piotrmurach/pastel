@@ -2,8 +2,18 @@
 
 ## [v0.6.0] - 2016-01-xx
 
+### Added
+* Add helper functions #foreground?, #backgroud?, #style to ANSI module
+* Add ColorParser for parsing color symbols out of text
+* Add Pastel#undecorate for parsing color names out of strings
+
 ### Changed
 * Change to use tty-color for color capabilities detection
+* Change to move enabled option to Pastel#new
+
+### Fixed
+* Fix #strip to only remove color sequences
+* Fix #decorate to pass through original text when decorating without colors
 
 ## [v0.5.3] - 2015-01-05
 
@@ -67,6 +77,7 @@
 * Change gemspec to include equatable as dependency
 * Change Delegator to stop creating instances and improve performance
 
+[v0.6.0]: https://github.com/peter-murach/pastel/compare/v0.5.3...v0.6.0
 [v0.5.3]: https://github.com/peter-murach/pastel/compare/v0.5.2...v0.5.3
 [v0.5.2]: https://github.com/peter-murach/pastel/compare/v0.5.1...v0.5.2
 [v0.5.1]: https://github.com/peter-murach/pastel/compare/v0.5.0...v0.5.1
