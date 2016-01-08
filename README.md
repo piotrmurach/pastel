@@ -62,6 +62,7 @@ Or install it yourself as:
   * [2.11 Alias Color](#211-alias-color)
 * [3. Supported Colors](#3-supported-colors)
 * [4. Environment](#4-environment)
+* [5. Command line](#5-command-line)
 
 ## 1 Usage
 
@@ -129,6 +130,12 @@ warning  = pastel.yellow.detach
 
 puts error.('Error!')
 puts warning.('Warning')
+```
+
+**Pastel** has companion library called `pastel-cli` that allows you to style text in terminal via `pastel` executable:
+
+```bash
+$ pastel green 'Unicorns & rainbows!'
 ```
 
 ## 2 Interface
@@ -318,6 +325,14 @@ Only alphanumeric and `_` are allowed in the alias names with the following form
 
 ```ruby
 PASTEL_COLORS_ALIASES='newcolor_1=red,newcolor_2=on_green'
+```
+
+## 5. Command line
+
+You can also install [pastel-cli](https://github.com/peter-murach/pastel-cli) to use `pastel` executable in terminal:
+
+```bash
+$ pastel green 'Unicorns & rainbows!'
 ```
 
 ## Contributing
