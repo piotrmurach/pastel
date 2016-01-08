@@ -7,6 +7,8 @@ module Pastel
   #
   # @api private
   class ColorResolver
+    # The color instance
+    # @api public
     attr_reader :color
 
     # Initialize ColorResolver
@@ -14,7 +16,7 @@ module Pastel
     # @param [Color] color
     #
     # @api private
-    def initialize(color = Color.new)
+    def initialize(color)
       @color = color
     end
 
