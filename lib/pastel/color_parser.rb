@@ -37,12 +37,12 @@ module Pastel
         # match control
         if char == ESC && (delim = scanner.getch) == CSI
           if scanner.scan(/^0m/)
-            state = unpack_ansi(state, ansi_stack)
+            unpack_ansi(ansi_stack) { |attr, name| state[attr] = name }
             ansi_stack = []
           elsif scanner.scan(/^([1-9;:]+)m/)
             # ansi codes separated by text
             if !text_chunk.empty? && !ansi_stack.empty?
-              state = unpack_ansi(state, ansi_stack)
+              unpack_ansi(ansi_stack) { |attr, name| state[attr] = name }
               ansi_stack = []
             end
             scanner[1].split(/:|;/).each do |code|
@@ -67,7 +67,7 @@ module Pastel
         state[:text] = text_chunk
       end
       if !ansi_stack.empty?
-        state = unpack_ansi(state, ansi_stack)
+        unpack_ansi(ansi_stack) { |attr, name| state[attr] = name}
       end
       if state.values.any? { |val| !val.empty? }
         result.push(state)
@@ -75,19 +75,38 @@ module Pastel
       result
     end
 
+    # Remove from current stack all ansi codes
+    #
+    # @param [Array[Integer]] ansi_stack
+    #   the stack with all the ansi codes
+    #
+    # @yield [Symbol, Symbol] attr, name
+    #
     # @api private
-    def self.unpack_ansi(state, ansi_stack)
+    def self.unpack_ansi(ansi_stack)
       ansi_stack.each do |ansi|
         name = ansi_for(ansi)
-        if ANSI.foreground?(ansi)
-          state[:foreground] = name
-        elsif ANSI.background?(ansi)
-          state[:background] = name
-        elsif ANSI.style?(ansi)
-          state[:style] = name
-        end
+        attr = attribute_for(ansi)
+        yield attr, name
       end
-      state
+    end
+
+    # Decide attribute name for ansi
+    #
+    # @param [Integer] ansi
+    #   the ansi escape code
+    #
+    # @return [Symbol]
+    #
+    # @api private
+    def self.attribute_for(ansi)
+      if ANSI.foreground?(ansi)
+        :foreground
+      elsif ANSI.background?(ansi)
+        :background
+      elsif ANSI.style?(ansi)
+        :style
+      end
     end
 
     # @api private
