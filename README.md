@@ -207,7 +207,7 @@ pastel.styles
 To perform translation of color name into ansi escape code use `lookup`:
 
 ```ruby
-color.lookup(:red).to eq("\e[31m")
+color.lookup(:red)  # => "\e[31m"
 ```
 
 ### 2.8 Valid?
