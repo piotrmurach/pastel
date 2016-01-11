@@ -10,6 +10,7 @@
 ### Changed
 * Change to use tty-color for color capabilities detection
 * Change to move enabled option to Pastel#new
+* Improve performance of Color#lookup
 
 ### Fixed
 * Fix #strip to only remove color sequences
