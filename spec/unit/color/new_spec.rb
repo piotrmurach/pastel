@@ -1,10 +1,6 @@
 # encoding: utf-8
 
-RSpec.describe Pastel::Color, '.new' do
-  it "is immutable" do
-    expect(described_class.new).to be_frozen
-  end
-
+RSpec.describe Pastel::Color, '::new' do
   it "allows to disable coloring" do
     color = described_class.new(enabled: false)
 

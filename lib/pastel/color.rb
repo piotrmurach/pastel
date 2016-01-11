@@ -25,7 +25,7 @@ module Pastel
     def initialize(options = {})
       @enabled  = options[:enabled]
       @eachline = options.fetch(:eachline) { false }
-      freeze
+      @cache    = {}
     end
 
     # Disable coloring of this terminal session
@@ -177,6 +177,9 @@ module Pastel
 
     # Find the escape code for color attribute.
     #
+    # @example
+    #   color.lookup(:red, :on_green) # => "\e[31;42m"
+    #
     # @param [Symbol,String] colors
     #   the color name(s) to lookup
     #
@@ -185,8 +188,9 @@ module Pastel
     #
     # @api private
     def lookup(*colors)
-      attribute = code(*colors)
-      "\e[#{attribute.join(';')}m"
+      @cache.fetch(colors) do
+        @cache[colors] = "\e[#{code(*colors).join(';')}m"
+      end
     end
 
     # Expose all ANSI color names and their codes
