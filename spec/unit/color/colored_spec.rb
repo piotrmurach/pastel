@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-RSpec.describe Pastel::Color, '.colored?' do
+RSpec.describe Pastel::Color, '#colored?' do
   subject(:color) { described_class.new(enabled: true) }
 
   it "checks if string has color codes" do
