@@ -55,11 +55,12 @@ Or install it yourself as:
   * [2.4 Detach](#24-detach)
   * [2.5 Strip](#25-strip)
   * [2.6 Styles](#26-styles)
-  * [2.7 Valid?](#27-valid)
-  * [2.8 Colored?](#28-colored)
-  * [2.9 Enabled?](#29-enabled)
-  * [2.10 Eachline](#210-eachline)
-  * [2.11 Alias Color](#211-alias-color)
+  * [2.7 Lookup](#27-lookup)
+  * [2.8 Valid?](#28-valid)
+  * [2.9 Colored?](#29-colored)
+  * [2.10 Enabled?](#30-enabled)
+  * [2.11 Eachline](#211-eachline)
+  * [2.12 Alias Color](#212-alias-color)
 * [3. Supported Colors](#3-supported-colors)
 * [4. Environment](#4-environment)
 * [5. Command line](#5-command-line)
@@ -164,12 +165,14 @@ This method will be useful in situations where colors are provided as a list of 
 
 ### 2.3 Undecorate
 
-It performs the opposite to `decorate` method by turning color escape sequences found in the string into a list of hash objects corresponding with the attribute names set by those sequences. The hash objects contain `:foreground`, `:background`, `:text` and `:style` keys.
+It performs the opposite to `decorate` method by turning color escape sequences found in the string into a list of hash objects corresponding with the attribute names set by those sequences. Depending on the parsed string, each hash object may contain `:foreground`, `:background`, `:text` and/or `:style` keys.
 
 ```ruby
 pastel.undecorate("\e[32mfoo\e[0m \e[31mbar\e[0m")
 # => [{foreground: :green, text: 'foo'}, {text: ' '}, {foreground: :red, text: 'bar'}]
 ```
+
+To translate the color name into sequence use [lookup](#27-lookup)
 
 ### 2.4 Detach
 
@@ -199,7 +202,15 @@ To get a full list of supported styles with the corresponding color codes do:
 pastel.styles
 ```
 
-### 2.7 Valid?
+### 2.7 Lookup
+
+To perform translation of color name into ansi escape code use `lookup`:
+
+```ruby
+color.lookup(:red).to eq("\e[31m")
+```
+
+### 2.8 Valid?
 
 Determine whether a color or a list of colors are valid. `valid?` takes one or more attribute strings or symbols and returns true if all attributes are known and false otherwise.
 
@@ -208,7 +219,7 @@ pastel.valid?(:red, :blue) # => true
 pastel.valid?(:unicorn)    # => false
 ```
 
-### 2.8 Colored?
+### 2.9 Colored?
 
 In order to determine if string has color escape codes use `colored?` like so
 
@@ -216,7 +227,7 @@ In order to determine if string has color escape codes use `colored?` like so
 pastel.colored?("\e[31mcolorful\e[0m")  # => true
 ```
 
-### 2.9 Enabled?
+### 2.10 Enabled?
 
 In order to detect if your terminal supports coloring do:
 
@@ -231,7 +242,7 @@ pastel = Pastel.new(enabled: true)
 pastel.enabled?   # => true
 ```
 
-### 2.10 Eachline
+### 2.11 Eachline
 
 Normally **Pastel** colors string by putting color codes at the beginning and end of the string, but if you provide `eachline` option set to some string, that string will be considered the line delimiter. Consequently, each line will be separately colored with escape sequence and reset code at the end. This option is desirable if the output string contains newlines and you're using background colors. Since color code that spans more than one line is often interpreted by terminal as providing background for all the lines that follow. This in turn may cause programs such as pagers to spill the colors throughout the text. In most cases you will want to set `eachline` to `\n` character like so:
 
@@ -240,7 +251,7 @@ pastel = Pastel.new(eachline: "\n")
 pastel.red("foo\nbar")  # => "\e[31mfoo\e[0m\n\e[31mbar\e[0m"
 ```
 
-### 2.11 Alias Color
+### 2.12 Alias Color
 
 In order to setup an alias for the standard color do:
 
