@@ -55,8 +55,7 @@ module Pastel
 
       ansi_colors = lookup(*colors)
       ansi_string = wrap_eachline(string, ansi_colors)
-      ansi_string = nest_color(collapse_reset(ansi_string), ansi_colors)
-      ansi_string
+      nest_color(collapse_reset(ansi_string), ansi_colors)
     end
 
     # Reset sequence
