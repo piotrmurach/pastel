@@ -11,10 +11,13 @@
 * Change to use tty-color for color capabilities detection
 * Change to move enabled option to Pastel#new
 * Improve performance of Color#lookup
+* Change Color#decorate performance to be 6x faster!
+* Change Color DSL styling to be 3x faster!
 
 ### Fixed
 * Fix #strip to only remove color sequences
 * Fix #decorate to pass through original text when decorating without colors
+* Fix #decorate to work correctly with nested background colors
 
 ## [v0.5.3] - 2015-01-05
 
