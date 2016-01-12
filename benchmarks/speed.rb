@@ -17,6 +17,21 @@ Benchmark.ips do |bench|
   bench.compare!
 end
 
+# version 0.6.0
+
+# Calculating -------------------------------------
+#       color decorate      7346 i/100ms
+#          dsl styling      3436 i/100ms
+# -------------------------------------------------
+#       color decorate    96062.1 (±7.9%) i/s -     484836 in   5.081126s
+#          dsl styling    38761.1 (±13.9%) i/s -     192416 in   5.065053s
+#
+# Comparison:
+#       color decorate:    96062.1 i/s
+#          dsl styling:    38761.1 i/s - 2.48x slower
+
+# version 0.5.3
+
 # Calculating -------------------------------------
 #       color decorate      1428 i/100ms
 #          dsl styling      1174 i/100ms
