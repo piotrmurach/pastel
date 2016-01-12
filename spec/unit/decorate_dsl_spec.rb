@@ -37,22 +37,27 @@ RSpec.describe Pastel, 'coloring dsl' do
 
   it "allows one level nesting" do
     expect(pastel.red("Unicorn" + pastel.blue("rule!"))).
-      to eq("\e[31mUnicorn\e[34mrule!\e[0m")
+      to eq("\e[31mUnicorn\e[34mrule!\e[0m\e[0m")
   end
 
   it "allows to nest mixed styles" do
     expect(pastel.red("Unicorn" + pastel.green.on_yellow.underline('running') + '!')).
-      to eq("\e[31mUnicorn\e[32;43;4mrunning\e[31m!\e[0m")
+      to eq("\e[31mUnicorn\e[32;43;4mrunning\e[0m\e[31m!\e[0m")
   end
 
   it "allows for deep nesting" do
     expect(pastel.red('r' + pastel.green('g' + pastel.yellow('y') + 'g') + 'r')).
-      to eq("\e[31mr\e[32mg\e[33my\e[32mg\e[31mr\e[0m")
+      to eq("\e[31mr\e[32mg\e[33my\e[0m\e[32mg\e[0m\e[31mr\e[0m")
   end
 
   it "allows for variable nested arguments" do
     expect(pastel.red('r', pastel.green('g'), 'r')).
-      to eq("\e[31mr\e[32mg\e[31mr\e[0m")
+      to eq("\e[31mr\e[32mg\e[0m\e[31mr\e[0m")
+  end
+
+  it "nests color foreground & background" do
+    expect(pastel.on_red('foo', pastel.green('bar'), 'foo')).
+      to eq("\e[41mfoo\e[32mbar\e[0m\e[41mfoo\e[0m")
   end
 
   it "allows to nest styles within block" do

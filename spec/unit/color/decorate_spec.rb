@@ -37,7 +37,7 @@ RSpec.describe Pastel::Color, '.decorate' do
 
   it "applies styles to nested text" do
     decorated = color.decorate(string + color.decorate(string, :red) + string, :green)
-    expect(decorated).to eq("\e[32m#{string}\e[31m#{string}\e[32m#{string}\e[0m")
+    expect(decorated).to eq("\e[32m#{string}\e[31m#{string}\e[0m\e[32m#{string}\e[0m")
   end
 
   it "decorates multiline string as regular by default" do

@@ -37,6 +37,8 @@ module Pastel
 
     # Apply ANSI color to the given string.
     #
+    # Wraps eachline with clear escape.
+    #
     # @param [String] string
     #   text to add ANSI strings
     #
@@ -54,8 +56,28 @@ module Pastel
       return string if blank?(string) || !enabled || colors.empty?
 
       ansi_colors = lookup(*colors)
-      ansi_string = wrap_eachline(string, ansi_colors)
-      nest_color(collapse_reset(ansi_string), ansi_colors)
+      if eachline
+        string.dup.split(eachline).map! do |line|
+          apply_codes(line, ansi_colors)
+        end.join(eachline)
+      else
+        apply_codes(string.dup, ansi_colors)
+      end
+    end
+
+    # Apply escape codes to the string
+    #
+    # @param [String] string
+    #   the string to apply escapes to
+    # @param [Strin] ansi_colors
+    #   the ansi colors to apply
+    #
+    # @return [String]
+    #   return the string surrounded by escape codes
+    #
+    # @api private
+    def apply_codes(string, ansi_colors)
+      "#{ansi_colors}#{string.gsub(/(\e\[0m)([^\e]+)$/, "\\1#{ansi_colors}\\2")}\e[0m"
     end
 
     # Reset sequence
@@ -64,64 +86,6 @@ module Pastel
     def clear
       lookup(:clear)
     end
-
-    # Wraps eachline with clear character
-    #
-    # @param [String] string
-    #   string to wrap with multiline characters
-    #
-    # @param [String] ansi_colors
-    #   colors to apply to string
-    #
-    # @return [String]
-    #
-    # @api private
-    def wrap_eachline(string, ansi_colors)
-      if eachline
-        string.split(eachline).map do |line|
-          "#{ansi_colors}#{line}#{clear}"
-        end.join(eachline)
-      else
-        "#{ansi_colors}#{string}#{clear}"
-      end
-    end
-
-    # Collapse reset
-    #
-    # @param [String] string
-    #   the string to remove duplicates from
-    #
-    # @return [String]
-    #
-    # @api private
-    def collapse_reset(string)
-      ansi_string = string.dup
-      if ansi_string =~ /(#{Regexp.quote(clear)}){2,}/
-        ansi_string.gsub!(/(#{Regexp.quote(clear)}){2,}/, clear)
-      end
-      ansi_string
-    end
-
-    # Nest color
-    #
-    # @param [String] string
-    #   the string to decorate
-    #
-    # @param [String] ansi_colors
-    #   the ansi colors to apply
-    #
-    # @return [String]
-    #
-    # @api private
-    def nest_color(string, ansi_colors)
-      ansi_string = string.dup
-      matches = ansi_string.scan(/#{Regexp.quote(clear)}/)
-      if matches.length > 1 && !eachline
-        ansi_string.sub!(/#{Regexp.quote(clear)}/, ansi_colors)
-      end
-      ansi_string
-    end
-    private :collapse_reset, :nest_color
 
     # Strip ANSI color codes from a string.
     #
@@ -155,6 +119,27 @@ module Pastel
       !ANSI_COLOR_REGEXP.match(string).nil?
     end
 
+    # Find the escape code for a given set of color attributes
+    #
+    # @example
+    #   color.lookup(:red, :on_green) # => "\e[31;42m"
+    #
+    # @param [Array[Symbol]] colors
+    #   the list of color name(s) to lookup
+    #
+    # @return [String]
+    #   the ANSI code(s)
+    #
+    # @raise [InvalidAttributeNameError]
+    #   exception raised for any invalid color name
+    #
+    # @api private
+    def lookup(*colors)
+      @cache.fetch(colors) do
+        @cache[colors] = "\e[#{code(*colors).join(';')}m"
+      end
+    end
+
     # Return raw color code without embeding it into a string.
     #
     # @return [Array[String]]
@@ -172,24 +157,6 @@ module Pastel
         end
       end
       attribute
-    end
-
-    # Find the escape code for color attribute.
-    #
-    # @example
-    #   color.lookup(:red, :on_green) # => "\e[31;42m"
-    #
-    # @param [Symbol,String] colors
-    #   the color name(s) to lookup
-    #
-    # @return [String]
-    #   the ANSI code(s)
-    #
-    # @api private
-    def lookup(*colors)
-      @cache.fetch(colors) do
-        @cache[colors] = "\e[#{code(*colors).join(';')}m"
-      end
     end
 
     # Expose all ANSI color names and their codes
