@@ -1,6 +1,6 @@
 # Change log
 
-## [v0.6.0] - 2016-01-xx
+## [v0.6.0] - 2016-01-15
 
 ### Added
 * Add helper functions #foreground?, #backgroud?, #style to ANSI module
