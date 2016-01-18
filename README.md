@@ -58,7 +58,7 @@ Or install it yourself as:
   * [2.7 Lookup](#27-lookup)
   * [2.8 Valid?](#28-valid)
   * [2.9 Colored?](#29-colored)
-  * [2.10 Enabled?](#30-enabled)
+  * [2.10 Enabled?](#210-enabled)
   * [2.11 Eachline](#211-eachline)
   * [2.12 Alias Color](#212-alias-color)
 * [3. Supported Colors](#3-supported-colors)
