@@ -133,6 +133,9 @@ puts error.('Error!')
 puts warning.('Warning')
 ```
 
+If your output is redirected to a file, you probably don't want Pastel to add color to your text.
+See https://github.com/peter-murach/pastel#210-enabled for a way to easily accomplish this.
+
 **Pastel** has companion library called `pastel-cli` that allows you to style text in terminal via `pastel` executable:
 
 ```bash
@@ -240,6 +243,14 @@ In cases when the color support is not provided no styling will be applied to th
 ```ruby
 pastel = Pastel.new(enabled: true)
 pastel.enabled?   # => true
+```
+
+If you are outputting to stdout or stderr, and want to suppress color if output is redirected to a file, 
+you can set the enabled attribute dynamically, as in:
+
+```ruby
+stdout_pastel = Pastel.new(enabled: $stdout.tty?)
+stderr_pastel = Pastel.new(enabled: $stderr.tty?)
 ```
 
 ### 2.11 Eachline
