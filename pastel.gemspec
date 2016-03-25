@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = [""]
   spec.summary       = %q{Terminal strings styling with intuitive and clean API.}
   spec.description   = %q{Terminal strings styling with intuitive and clean API.}
-  spec.homepage      = "https://github.com/peter-murach/pastel"
+  spec.homepage      = "https://github.com/piotrmurach/pastel"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
