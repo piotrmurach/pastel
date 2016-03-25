@@ -1,26 +1,26 @@
 <div align="center">
-  <img width="215" src="https://cdn.rawgit.com/peter-murach/pastel/master/assets/pastel_logo.png" alt="pastel logo" />
+  <img width="215" src="https://cdn.rawgit.com/piotrmurach/pastel/master/assets/pastel_logo.png" alt="pastel logo" />
 </div>
 # Pastel
 [![Gem Version](https://badge.fury.io/rb/pastel.svg)][gem]
-[![Build Status](https://secure.travis-ci.org/peter-murach/pastel.svg?branch=master)][travis]
-[![Code Climate](https://codeclimate.com/github/peter-murach/pastel/badges/gpa.svg)][codeclimate]
-[![Coverage Status](https://coveralls.io/repos/peter-murach/pastel/badge.svg)][coverage]
-[![Inline docs](http://inch-ci.org/github/peter-murach/pastel.svg?branch=master)][inchpages]
+[![Build Status](https://secure.travis-ci.org/piotrmurach/pastel.svg?branch=master)][travis]
+[![Code Climate](https://codeclimate.com/github/piotrmurach/pastel/badges/gpa.svg)][codeclimate]
+[![Coverage Status](https://coveralls.io/repos/piotrmurach/pastel/badge.svg)][coverage]
+[![Inline docs](http://inch-ci.org/github/piotrmurach/pastel.svg?branch=master)][inchpages]
 
 [gem]: http://badge.fury.io/rb/pastel
-[travis]: http://travis-ci.org/peter-murach/pastel
-[codeclimate]: https://codeclimate.com/github/peter-murach/pastel
-[coverage]: https://coveralls.io/r/peter-murach/pastel
-[inchpages]: http://inch-ci.org/github/peter-murach/pastel
+[travis]: http://travis-ci.org/piotrmurach/pastel
+[codeclimate]: https://codeclimate.com/github/piotrmurach/pastel
+[coverage]: https://coveralls.io/r/piotrmurach/pastel
+[inchpages]: http://inch-ci.org/github/piotrmurach/pastel
 
 > Terminal output styling with intuitive and clean API that doesn't monkey patch String class.
 
 **Pastel** is minimal and focused to work in all terminal emulators.
 
-![screenshot](https://github.com/peter-murach/pastel/raw/master/assets/screenshot.png)
+![screenshot](https://github.com/piotrmurach/pastel/raw/master/assets/screenshot.png)
 
-**Pastel** provides independent coloring component for [TTY](https://github.com/peter-murach/tty) toolkit.
+**Pastel** provides independent coloring component for [TTY](https://github.com/piotrmurach/tty) toolkit.
 
 ## Features
 
@@ -134,7 +134,7 @@ puts warning.('Warning')
 ```
 
 If your output is redirected to a file, you probably don't want Pastel to add color to your text.
-See https://github.com/peter-murach/pastel#210-enabled for a way to easily accomplish this.
+See https://github.com/piotrmurach/pastel#210-enabled for a way to easily accomplish this.
 
 **Pastel** has companion library called `pastel-cli` that allows you to style text in terminal via `pastel` executable:
 
@@ -351,7 +351,7 @@ PASTEL_COLORS_ALIASES='newcolor_1=red,newcolor_2=on_green'
 
 ## 5. Command line
 
-You can also install [pastel-cli](https://github.com/peter-murach/pastel-cli) to use `pastel` executable in terminal:
+You can also install [pastel-cli](https://github.com/piotrmurach/pastel-cli) to use `pastel` executable in terminal:
 
 ```bash
 $ pastel green 'Unicorns & rainbows!'
@@ -359,7 +359,7 @@ $ pastel green 'Unicorns & rainbows!'
 
 ## Contributing
 
-1. Fork it ( https://github.com/peter-murach/pastel/fork )
+1. Fork it ( https://github.com/piotrmurach/pastel/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
