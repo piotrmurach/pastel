@@ -12,8 +12,6 @@ module Pastel
     # Match all color escape sequences
     ANSI_COLOR_REGEXP = /\x1b+(\[|\[\[)[0-9;:?]+m/mo.freeze
 
-    BLANK_REGEX = /\A[[:space:]]*\z/o.freeze
-
     attr_reader :enabled
     alias_method :enabled?, :enabled
 
@@ -226,9 +224,7 @@ module Pastel
     #
     # @api private
     def blank?(value)
-      value.nil? ||
-      value.respond_to?(:empty?) && value.empty? ||
-      BLANK_REGEX =~ value
+      value.nil? || !value.respond_to?(:to_str) || value.to_s == ''
     end
 
     # @api private

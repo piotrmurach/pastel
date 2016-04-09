@@ -1,11 +1,8 @@
 # encoding: utf-8
 
 RSpec.describe Pastel, 'coloring dsl' do
-  subject(:pastel) { described_class.new(enabled: true) }
 
-  it "doesn't apply styles to empty string" do
-    expect(pastel.red('')).to eq('')
-  end
+  subject(:pastel) { described_class.new(enabled: true) }
 
   it "colors string" do
     expect(pastel.red("unicorn")).to eq("\e[31municorn\e[0m")
@@ -69,6 +66,18 @@ RSpec.describe Pastel, 'coloring dsl' do
         yellow('the world!')
       end
     end).to eq(string)
+  end
+
+  it "doesn't decorate nil" do
+    expect(pastel.red(nil)).to eq('')
+  end
+
+  it "doesn't apply styles to empty string" do
+    expect(pastel.red('')).to eq('')
+  end
+
+  it "applies styles to empty with width more than 1" do
+    expect(pastel.red(' ')).to eq("\e[31m \e[0m")
   end
 
   it "raises error when chained with unrecognized color" do

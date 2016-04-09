@@ -69,7 +69,11 @@ RSpec.describe Pastel::Color, '.decorate' do
     expect(color.decorate(nil, :red)).to eq(nil)
   end
 
-  it "doesn't decorate empty string" do
-    expect(color.decorate("  ", :red)).to eq("  ")
+  it "doesn't decorate zero length string" do
+    expect(color.decorate('', :red)).to eq('')
+  end
+
+  it "doesn't decorate non-zero length string" do
+    expect(color.decorate('  ', :red)).to eq("\e[31m  \e[0m")
   end
 end
