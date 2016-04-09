@@ -5,13 +5,13 @@
 [![Gem Version](https://badge.fury.io/rb/pastel.svg)][gem]
 [![Build Status](https://secure.travis-ci.org/piotrmurach/pastel.svg?branch=master)][travis]
 [![Code Climate](https://codeclimate.com/github/piotrmurach/pastel/badges/gpa.svg)][codeclimate]
-[![Coverage Status](https://coveralls.io/repos/piotrmurach/pastel/badge.svg)][coverage]
+[![Coverage Status](https://coveralls.io/repos/github/piotrmurach/pastel/badge.svg)][coverage]
 [![Inline docs](http://inch-ci.org/github/piotrmurach/pastel.svg?branch=master)][inchpages]
 
 [gem]: http://badge.fury.io/rb/pastel
 [travis]: http://travis-ci.org/piotrmurach/pastel
 [codeclimate]: https://codeclimate.com/github/piotrmurach/pastel
-[coverage]: https://coveralls.io/r/piotrmurach/pastel
+[coverage]: https://coveralls.io/github/piotrmurach/pastel
 [inchpages]: http://inch-ci.org/github/piotrmurach/pastel
 
 > Terminal output styling with intuitive and clean API that doesn't monkey patch String class.
