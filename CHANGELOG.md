@@ -1,5 +1,14 @@
 # Change log
 
+## [v0.7.0] - 2016-12-27
+
+### Changed
+* Enabled colors on Windows by default
+* Update tty-color dependency
+
+### Fixed
+* Fix Color#decorate to prevent redecoration with the same color
+
 ## [v0.6.1] - 2016-04-09
 
 ### Fixed
@@ -86,6 +95,7 @@
 * Change gemspec to include equatable as dependency
 * Change Delegator to stop creating instances and improve performance
 
+[v0.7.0]: https://github.com/peter-murach/pastel/compare/v0.6.1...v0.7.0
 [v0.6.1]: https://github.com/peter-murach/pastel/compare/v0.6.0...v0.6.1
 [v0.6.0]: https://github.com/peter-murach/pastel/compare/v0.5.3...v0.6.0
 [v0.5.3]: https://github.com/peter-murach/pastel/compare/v0.5.2...v0.5.3
