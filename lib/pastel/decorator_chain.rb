@@ -16,7 +16,11 @@ module Pastel
     #
     # @api public
     def add(decorator)
-      self.class.new(decorators + [decorator])
+      if decorators.include?(decorator)
+        self.class.new(decorators)
+      else
+        self.class.new(decorators + [decorator])
+      end
     end
 
     # Iterate over list of decorators
