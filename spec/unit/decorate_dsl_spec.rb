@@ -80,6 +80,10 @@ RSpec.describe Pastel, 'coloring dsl' do
     expect(pastel.red(' ')).to eq("\e[31m \e[0m")
   end
 
+  it "applies color only once" do
+    expect(pastel.red.red.red("unicorn")).to eq(pastel.red("unicorn"))
+  end
+
   it "raises error when chained with unrecognized color" do
     expect {
       pastel.unknown.on_red('unicorn')

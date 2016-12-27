@@ -53,7 +53,7 @@ module Pastel
     def decorate(string, *colors)
       return string if blank?(string) || !enabled || colors.empty?
 
-      ansi_colors = lookup(*colors)
+      ansi_colors = lookup(*colors.dup.uniq)
       if eachline
         string.dup.split(eachline).map! do |line|
           apply_codes(line, ansi_colors)
