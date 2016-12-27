@@ -31,11 +31,22 @@ RSpec.describe Pastel, '#new' do
   describe 'options passed in' do
     it 'defaults enabled to color detection' do
       allow(TTY::Color).to receive(:color?).and_return(true)
+      allow(TTY::Color).to receive(:windows?).and_return(false)
 
       pastel = described_class.new
 
       expect(pastel.enabled?).to eq(true)
       expect(TTY::Color).to have_received(:color?)
+    end
+
+    it "defaults to enabled on Windows" do
+      allow(TTY::Color).to receive(:color?).and_return(false)
+      allow(TTY::Color).to receive(:windows?).and_return(true)
+
+      pastel = described_class.new
+
+      expect(pastel.enabled?).to eq(true)
+      expect(TTY::Color).to_not have_received(:color?)
     end
 
     it "sets enabled option" do
