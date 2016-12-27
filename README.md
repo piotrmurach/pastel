@@ -4,12 +4,14 @@
 # Pastel
 [![Gem Version](https://badge.fury.io/rb/pastel.svg)][gem]
 [![Build Status](https://secure.travis-ci.org/piotrmurach/pastel.svg?branch=master)][travis]
+[![Build status](https://ci.appveyor.com/api/projects/status/9blbjfq42o4v1rk4?svg=true)][appveyor]
 [![Code Climate](https://codeclimate.com/github/piotrmurach/pastel/badges/gpa.svg)][codeclimate]
 [![Coverage Status](https://coveralls.io/repos/github/piotrmurach/pastel/badge.svg)][coverage]
 [![Inline docs](http://inch-ci.org/github/piotrmurach/pastel.svg?branch=master)][inchpages]
 
 [gem]: http://badge.fury.io/rb/pastel
 [travis]: http://travis-ci.org/piotrmurach/pastel
+[appveyor]: https://ci.appveyor.com/project/piotrmurach/pastel
 [codeclimate]: https://codeclimate.com/github/piotrmurach/pastel
 [coverage]: https://coveralls.io/github/piotrmurach/pastel
 [inchpages]: http://inch-ci.org/github/piotrmurach/pastel
@@ -367,4 +369,4 @@ $ pastel green 'Unicorns & rainbows!'
 
 ## Copyright
 
-Copyright (c) 2014-2016 Piotr Murach. See LICENSE for further details.
+Copyright (c) 2014-2017 Piotr Murach. See LICENSE for further details.
