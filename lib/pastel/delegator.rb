@@ -1,5 +1,6 @@
 # coding: utf-8
 
+require 'equatable'
 require 'forwardable'
 
 require 'pastel/color_parser'

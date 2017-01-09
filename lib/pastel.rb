@@ -1,6 +1,5 @@
 # encoding: utf-8
 
-require 'equatable'
 require 'tty-color'
 
 require 'pastel/alias_importer'

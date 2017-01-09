@@ -1,5 +1,6 @@
 # encoding: utf-8
 
+require 'equatable'
 require 'pastel/ansi'
 
 module Pastel

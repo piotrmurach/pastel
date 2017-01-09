@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'equatable'
+
 module Pastel
   # A class representing detached color
   class Detached

@@ -1,5 +1,7 @@
 # coding: utf-8
 
+require 'equatable'
+
 module Pastel
   # Collects a list of decorators for styling a string
   #
