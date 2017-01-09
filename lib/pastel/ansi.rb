@@ -51,7 +51,7 @@ module Pastel
       on_bright_magenta: 105,
       on_bright_cyan:    106,
       on_bright_white:   107
-    }
+    }.freeze
 
     module_function
 
