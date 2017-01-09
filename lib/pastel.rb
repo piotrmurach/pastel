@@ -27,7 +27,7 @@ module Pastel
   # @api public
   def new(options = {})
     unless options.key?(:enabled)
-      options.merge!(enabled: TTY::Color.windows? || TTY::Color.color?)
+      options[:enabled] = (TTY::Color.windows? || TTY::Color.color?)
     end
     color    = Color.new(options)
     importer = AliasImporter.new(color, ENV)
