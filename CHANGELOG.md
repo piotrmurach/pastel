@@ -1,5 +1,12 @@
 # Change log
 
+## [v0.7.1] - 2017-01-09
+
+### Changed
+* Change to load specfic files when needed
+* Change to freeze ANSI attributes
+* Change to directly assign enabled attribute
+
 ## [v0.7.0] - 2016-12-27
 
 ### Changed
@@ -95,6 +102,7 @@
 * Change gemspec to include equatable as dependency
 * Change Delegator to stop creating instances and improve performance
 
+[v0.7.1]: https://github.com/peter-murach/pastel/compare/v0.7.0...v0.7.1
 [v0.7.0]: https://github.com/peter-murach/pastel/compare/v0.6.1...v0.7.0
 [v0.6.1]: https://github.com/peter-murach/pastel/compare/v0.6.0...v0.6.1
 [v0.6.0]: https://github.com/peter-murach/pastel/compare/v0.5.3...v0.6.0
