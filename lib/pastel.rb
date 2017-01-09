@@ -1,16 +1,12 @@
 # encoding: utf-8
 
-require 'forwardable'
 require 'equatable'
 require 'tty-color'
 
-require 'pastel/ansi'
 require 'pastel/alias_importer'
 require 'pastel/color'
-require 'pastel/color_parser'
 require 'pastel/color_resolver'
 require 'pastel/delegator'
-require 'pastel/detached'
 require 'pastel/decorator_chain'
 require 'pastel/version'
 

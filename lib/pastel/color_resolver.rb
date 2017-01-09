@@ -1,5 +1,7 @@
 # coding: utf-8
 
+require 'pastel/detached'
+
 module Pastel
   # Contains logic for resolving styles applied to component
   #

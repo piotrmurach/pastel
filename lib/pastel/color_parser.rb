@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'pastel/ansi'
+
 module Pastel
   # Responsible for parsing color symbols out of text with color escapes
   #

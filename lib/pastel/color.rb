@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'pastel/ansi'
+
 module Pastel
   # A class responsible for coloring strings.
   class Color
