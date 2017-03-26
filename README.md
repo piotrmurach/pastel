@@ -1,7 +1,9 @@
 <div align="center">
   <img width="215" src="https://cdn.rawgit.com/piotrmurach/pastel/master/assets/pastel_logo.png" alt="pastel logo" />
 </div>
+
 # Pastel
+
 [![Gem Version](https://badge.fury.io/rb/pastel.svg)][gem]
 [![Build Status](https://secure.travis-ci.org/piotrmurach/pastel.svg?branch=master)][travis]
 [![Build status](https://ci.appveyor.com/api/projects/status/9blbjfq42o4v1rk4?svg=true)][appveyor]
