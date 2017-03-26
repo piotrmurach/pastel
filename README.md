@@ -121,7 +121,7 @@ pastel.red.on_green('Unicorns') {
 }
 ```
 
-When dealing with multiline strings you can set `eachline` option(more info see [eachline](#29-eachline)):
+When dealing with multiline strings you can set `eachline` option(more info see [eachline](#211-eachline)):
 
 ```
 pastel = Pastel.new(eachline: "\n")
