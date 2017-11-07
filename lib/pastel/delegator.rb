@@ -16,7 +16,7 @@ module Pastel
     include Equatable
 
     def_delegators '@resolver.color', :valid?, :styles, :strip, :decorate,
-                   :enabled?, :colored?, :alias_color, :lookup
+                   :enabled?, :colored?, :alias_color, :alias_style, :lookup
 
     def_delegators ColorParser, :parse
     alias_method :undecorate, :parse

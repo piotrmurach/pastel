@@ -65,6 +65,7 @@ Or install it yourself as:
   * [2.10 Enabled?](#210-enabled)
   * [2.11 Eachline](#211-eachline)
   * [2.12 Alias Color](#212-alias-color)
+  * [2.13 Alias Style](#213-alias-style)
 * [3. Supported Colors](#3-supported-colors)
 * [4. Environment](#4-environment)
 * [5. Command line](#5-command-line)
@@ -285,6 +286,20 @@ This method allows you to give more meaningful names to existing colors.
 You can also use the `PASTEL_COLORS_ALIASES` environment variable (see [Environment](#4-environment)) to specify aliases.
 
 Note: Aliases are global and affect all callers in the same process.
+
+### 2.13 Alias Style
+
+In order to setup an alias for standard colors do:
+
+```ruby
+pastel.alias_style(:danger, :red, :bold, :underline)
+```
+
+From that point forward, `:danger` alias can be passed to `decorate`, `valid?` with the same meaning as standard colors:
+
+```ruby
+pastel.danger.on_green('unicorn')   # => will use :red, :bold, :underline, :on_green
+```
 
 ## 3 Supported Colors
 

@@ -219,6 +219,31 @@ module Pastel
       color
     end
 
+    # Define a new style alias
+    #
+    # @param [String] alias_name
+    #   the style alias to define
+    # @param [Array[Symbol,String]] color
+    #   the colors the alias will correspond to
+    #
+    # @return [Array[String]]
+    #   the standard color values of the alias
+    #
+    # @api public
+    def alias_style(alias_name, *colors)
+      validate(*colors)
+
+      if !(alias_name.to_s =~ /^[\w]+$/)
+        fail InvalidAliasNameError, "Invalid alias name `#{alias_name}`"
+      elsif ANSI::ATTRIBUTES[alias_name]
+        fail InvalidAliasNameError,
+             "Cannot alias standard color `#{alias_name}`"
+      end
+
+      ALIASES[alias_name.to_sym] = colors.map(&ANSI::ATTRIBUTES.method(:[]))
+      colors
+    end
+
     private
 
     # Check if value contains anything to style
