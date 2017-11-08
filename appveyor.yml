@@ -9,7 +9,6 @@ test_script:
   - bundle exec rake ci
 environment:
   matrix:
-    - ruby_version: "193"
     - ruby_version: "200"
     - ruby_version: "200-x64"
     - ruby_version: "21"
@@ -18,6 +17,3 @@ environment:
     - ruby_version: "22-x64"
     - ruby_version: "23"
     - ruby_version: "23-x64"
-matrix:
-  allow_failures:
-    - ruby_version: "193"
