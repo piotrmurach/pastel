@@ -18,7 +18,7 @@ module Pastel
     # Import aliases from the environment
     #
     # @example
-    #   importer = Pastel::AliasImporter.new(Pastel::Color.new)
+    #   importer = Pastel::AliasImporter.new(Pastel::Color.new, {})
     #   importer.import
     #
     # @return [nil]
@@ -32,7 +32,8 @@ module Pastel
         if !new_color || !old_colors
           output.puts "Bad color mapping `#{color_alias}`"
         else
-          color.alias_color(new_color.to_sym, *old_colors.split('.').map(&:to_sym))
+          color.alias_color(new_color.to_sym,
+                            *old_colors.split('.').map(&:to_sym))
         end
       end
     end
