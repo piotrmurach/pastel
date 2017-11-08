@@ -5,13 +5,13 @@ RSpec.describe Pastel::AliasImporter, '#import' do
   let(:output) { StringIO.new }
 
   it "imports aliases from environment" do
-    color_aliases = "funky=red,base=bright_yellow"
+    color_aliases = "funky=red.bold,base=bright_yellow"
     env = {'PASTEL_COLORS_ALIASES' => color_aliases}
     importer = described_class.new(color, env)
 
     importer.import
 
-    expect(color).to have_received(:alias_color).with(:funky, :red)
+    expect(color).to have_received(:alias_color).with(:funky, :red, :bold)
     expect(color).to have_received(:alias_color).with(:base, :bright_yellow)
   end
 
