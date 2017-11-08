@@ -65,7 +65,6 @@ Or install it yourself as:
   * [2.10 Enabled?](#210-enabled)
   * [2.11 Eachline](#211-eachline)
   * [2.12 Alias Color](#212-alias-color)
-  * [2.13 Alias Style](#213-alias-style)
 * [3. Supported Colors](#3-supported-colors)
 * [4. Environment](#4-environment)
 * [5. Command line](#5-command-line)
@@ -269,16 +268,16 @@ pastel.red("foo\nbar")  # => "\e[31mfoo\e[0m\n\e[31mbar\e[0m"
 
 ### 2.12 Alias Color
 
-In order to setup an alias for the standard color do:
+In order to setup an alias for standard colors do:
 
 ```ruby
-pastel.alias_color(:funky, :red)
+pastel.alias_color(:funky, :red, :bold)
 ```
 
-From that point forward, `:funky` alias can be passed to `decorate`, `valid?` with the same meaning as standard color:
+From that point forward, `:funky` alias can be passed to `decorate`, `valid?` with the same meaning as standard colors:
 
 ```ruby
-pastel.funky.on_green('unicorn')   # => will use :red color
+pastel.funky.on_green('unicorn')   # => will use :red, :bold color
 ```
 
 This method allows you to give more meaningful names to existing colors.
@@ -286,20 +285,6 @@ This method allows you to give more meaningful names to existing colors.
 You can also use the `PASTEL_COLORS_ALIASES` environment variable (see [Environment](#4-environment)) to specify aliases.
 
 Note: Aliases are global and affect all callers in the same process.
-
-### 2.13 Alias Style
-
-In order to setup an alias for standard colors do:
-
-```ruby
-pastel.alias_style(:danger, :red, :bold, :underline)
-```
-
-From that point forward, `:danger` alias can be passed to `decorate`, `valid?` with the same meaning as standard colors:
-
-```ruby
-pastel.danger.on_green('unicorn')   # => will use :red, :bold, :underline, :on_green
-```
 
 ## 3 Supported Colors
 
@@ -362,10 +347,10 @@ Generic styles:
 
 This environment variable allows you to specify custom color aliases at runtime that will be understood by **Pastel**. The environment variable is read and used when the instance of **Pastel** is created. You can also use `alias_color` to create aliases.
 
-Only alphanumeric and `_` are allowed in the alias names with the following format:
+Only alphanumeric and `_` and `.` are allowed in the alias names with the following format:
 
 ```ruby
-PASTEL_COLORS_ALIASES='newcolor_1=red,newcolor_2=on_green'
+PASTEL_COLORS_ALIASES='newcolor_1=red,newcolor_2=on_green,funky=red.bold'
 ```
 
 ## 5. Command line

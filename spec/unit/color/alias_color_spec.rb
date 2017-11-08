@@ -23,10 +23,10 @@ RSpec.describe Pastel::Color, '.alias_color' do
   end
 
   it 'aliases color :red to :funky' do
-    color.alias_color(:funky, :red)
+    color.alias_color(:funky, :red, :bold)
     expect(color.valid?(:funky)).to eq(true)
-    expect(color.code(:funky)).to eq([31])
-    expect(color.lookup(:funky)).to eq("\e[31m")
+    expect(color.code(:funky)).to eq([[31, 1]])
+    expect(color.lookup(:funky)).to eq("\e[31;1m")
   end
 
   it "has global aliases" do

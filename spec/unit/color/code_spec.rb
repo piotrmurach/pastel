@@ -18,7 +18,7 @@ RSpec.describe Pastel::Color, '#code' do
   end
 
   it "finds alias code" do
-    color.alias_color(:funky, :red)
-    expect(color.code(:funky)).to eq(color.code(:red))
+    color.alias_color(:funky, :red, :bold)
+    expect(color.code(:funky)).to eq([color.code(:red) + color.code(:bold)])
   end
 end
