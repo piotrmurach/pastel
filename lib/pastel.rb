@@ -2,12 +2,12 @@
 
 require 'tty-color'
 
-require 'pastel/alias_importer'
-require 'pastel/color'
-require 'pastel/color_resolver'
-require 'pastel/delegator'
-require 'pastel/decorator_chain'
-require 'pastel/version'
+require_relative 'pastel/alias_importer'
+require_relative 'pastel/color'
+require_relative 'pastel/color_resolver'
+require_relative 'pastel/delegator'
+require_relative 'pastel/decorator_chain'
+require_relative 'pastel/version'
 
 module Pastel
   # Raised when the style attribute is not supported

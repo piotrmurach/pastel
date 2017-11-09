@@ -1,7 +1,8 @@
 # encoding: utf-8
 
 require 'equatable'
-require 'pastel/ansi'
+
+require_relative 'ansi'
 
 module Pastel
   # A class responsible for coloring strings.

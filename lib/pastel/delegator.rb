@@ -3,8 +3,8 @@
 require 'equatable'
 require 'forwardable'
 
-require 'pastel/color_parser'
-require 'pastel/decorator_chain'
+require_relative 'color_parser'
+require_relative 'decorator_chain'
 
 module Pastel
   # Wrapes the {DecoratorChain} to allow for easy resolution
