@@ -1,5 +1,11 @@
 # Change log
 
+## [v0.7.2] - 2017-11-09
+
+### Changed
+* Change to load relative file paths
+* Change to allow `#alias_color` to accept multiple colors by Jared Ning (@ordinaryzelig)
+
 ## [v0.7.1] - 2017-01-09
 
 ### Changed
@@ -102,6 +108,7 @@
 * Change gemspec to include equatable as dependency
 * Change Delegator to stop creating instances and improve performance
 
+[v0.7.2]: https://github.com/peter-murach/pastel/compare/v0.7.1...v0.7.2
 [v0.7.1]: https://github.com/peter-murach/pastel/compare/v0.7.0...v0.7.1
 [v0.7.0]: https://github.com/peter-murach/pastel/compare/v0.6.1...v0.7.0
 [v0.6.1]: https://github.com/peter-murach/pastel/compare/v0.6.0...v0.6.1
