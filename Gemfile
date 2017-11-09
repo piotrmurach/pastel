@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gemspec
 
 group :development do
-  gem 'rspec', '~> 3.5.0'
   gem 'yard',  '~> 0.8.7'
   gem 'benchmark-ips', '~> 2.0.0'
 end
