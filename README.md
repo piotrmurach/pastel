@@ -214,7 +214,8 @@ pastel.styles
 To perform translation of color name into ansi escape code use `lookup`:
 
 ```ruby
-color.lookup(:red)  # => "\e[31m"
+pastel.lookup(:red)   # => "\e[31m"
+pastel.lookup(:reset) # => "\e[0m"
 ```
 
 ### 2.8 Valid?
@@ -371,4 +372,4 @@ $ pastel green 'Unicorns & rainbows!'
 
 ## Copyright
 
-Copyright (c) 2014-2017 Piotr Murach. See LICENSE for further details.
+Copyright (c) 2014-2018 Piotr Murach. See LICENSE for further details.
