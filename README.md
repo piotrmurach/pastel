@@ -10,6 +10,7 @@
 [![Code Climate](https://codeclimate.com/github/piotrmurach/pastel/badges/gpa.svg)][codeclimate]
 [![Coverage Status](https://coveralls.io/repos/github/piotrmurach/pastel/badge.svg)][coverage]
 [![Inline docs](http://inch-ci.org/github/piotrmurach/pastel.svg?branch=master)][inchpages]
+[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
 [gem]: http://badge.fury.io/rb/pastel
 [travis]: http://travis-ci.org/piotrmurach/pastel
