@@ -1,21 +1,20 @@
 ---
 language: ruby
-sudo: false
-cache: bundler
-before_install: "gem update bundler"
+before_install: "gem install bundler -v '< 2.0'"
 bundler_args: --without yard benchmarks
 script: "bundle exec rake ci"
 rvm:
-  - 1.9.3
   - 2.0.0
   - 2.1.10
-  - 2.2.8
-  - 2.3.5
-  - 2.4.2
-  - jruby-9000
+  - 2.2.10
+  - 2.3.8
+  - 2.4.6
+  - 2.5.5
+  - 2.6.2
+  - ruby-head
+  - jruby-9.2.6.0
   - jruby-head
   - truffleruby
-  - ruby-head
 matrix:
   allow_failures:
     - rvm: ruby-head
