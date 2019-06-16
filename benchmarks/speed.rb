@@ -1,5 +1,6 @@
-require 'pastel'
 require 'benchmark/ips'
+
+require_relative '../lib/pastel'
 
 pastel = Pastel.new
 
@@ -16,6 +17,21 @@ Benchmark.ips do |bench|
 
   bench.compare!
 end
+
+
+# version 0.7.3
+#
+# Warming up --------------------------------------
+#       color decorate     8.260k i/100ms
+#          dsl styling     4.211k i/100ms
+# Calculating -------------------------------------
+#       color decorate     93.820k (± 2.3%) i/s -    470.820k in   5.021097s
+#          dsl styling     44.655k (± 3.3%) i/s -    227.394k in   5.097981s
+# 
+# Comparison:
+#       color decorate:    93819.7 i/s
+#          dsl styling:    44654.6 i/s - 2.10x  slower
+#
 
 # version 0.6.0
 
