@@ -1,4 +1,4 @@
-require_relative 'lib/pastel'
+require_relative '../lib/pastel'
 
 pastel = Pastel.new
 
