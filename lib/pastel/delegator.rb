@@ -78,7 +78,8 @@ module Pastel
     end
 
     def respond_to_missing?(name, include_all = false)
-      resolver.color.respond_to?(name, include_all) || valid?(name) || super
+      resolver.color.respond_to?(name, include_all) ||
+        resolver.color.valid?(name) || super
     end
 
     # Evaluate color block
