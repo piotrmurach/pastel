@@ -9,9 +9,18 @@ Gem::Specification.new do |spec|
   spec.email         = ["me@piotrmurach.com"]
   spec.summary       = %q{Terminal strings styling with intuitive and clean API.}
   spec.description   = %q{Terminal strings styling with intuitive and clean API.}
-  spec.homepage      = "https://github.com/piotrmurach/pastel"
+  spec.homepage      = "https://piotrmurach.github.io/tty/"
   spec.license       = "MIT"
-
+  if spec.respond_to?(:metadata=)
+    spec.metadata = {
+      "allowed_push_host" => "https://rubygems.org",
+      "bug_tracker_uri"   => "https://github.com/piotrmurach/pastel/issues",
+      "changelog_uri"     => "https://github.com/piotrmurach/pastel/blob/master/CHANGELOG.md",
+      "documentation_uri" => "https://www.rubydoc.info/gems/pastel",
+      "homepage_uri"      => spec.homepage,
+      "source_code_uri"   => "https://github.com/piotrmurach/pastel"
+    }
+  end
   spec.files         = Dir['{lib,spec,examples}/**/*.rb']
   spec.files        += Dir['tasks/*', 'pastel.gemspec']
   spec.files        += Dir['README.md', 'CHANGELOG.md', 'LICENSE.txt', 'Rakefile']
