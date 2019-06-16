@@ -1,5 +1,14 @@
 # Change log
 
+## [v0.7.3] - 2019-06-16
+
+### Changed
+* Change gemspec to load required files directly without git
+* Change to update tty-color & equatable dependency versions
+
+### Fixed
+* Fix Delegator warning
+
 ## [v0.7.2] - 2017-11-09
 
 ### Changed
@@ -9,7 +18,7 @@
 ## [v0.7.1] - 2017-01-09
 
 ### Changed
-* Change to load specfic files when needed
+* Change to load specific files when needed
 * Change to freeze ANSI attributes
 * Change to directly assign enabled attribute
 
@@ -30,7 +39,7 @@
 ## [v0.6.0] - 2016-01-15
 
 ### Added
-* Add helper functions #foreground?, #backgroud?, #style to ANSI module
+* Add helper functions #foreground?, #background?, #style to ANSI module
 * Add ColorParser for parsing color symbols out of text
 * Add Pastel#undecorate for parsing color names out of strings
 
@@ -108,6 +117,7 @@
 * Change gemspec to include equatable as dependency
 * Change Delegator to stop creating instances and improve performance
 
+[v0.7.3]: https://github.com/peter-murach/pastel/compare/v0.7.2...v0.7.3
 [v0.7.2]: https://github.com/peter-murach/pastel/compare/v0.7.1...v0.7.2
 [v0.7.1]: https://github.com/peter-murach/pastel/compare/v0.7.0...v0.7.1
 [v0.7.0]: https://github.com/peter-murach/pastel/compare/v0.6.1...v0.7.0
