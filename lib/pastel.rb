@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-require "strscan"
-
 require 'tty-color'
 
 require_relative 'pastel/alias_importer'

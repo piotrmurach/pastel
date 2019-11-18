@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require "strscan"
+
 require_relative 'ansi'
 
 module Pastel
