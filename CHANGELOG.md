@@ -1,5 +1,10 @@
 # Change log
 
+## [v0.7.4] - 2019-11-18
+
+### Fixed
+* Fix ColorParser#undecorate to require direct dependency by Nick Pezza(@npezza93)
+
 ## [v0.7.3] - 2019-06-16
 
 ### Changed
