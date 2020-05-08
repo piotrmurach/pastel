@@ -19,11 +19,14 @@ Gem::Specification.new do |spec|
       "source_code_uri"   => "https://github.com/piotrmurach/pastel"
     }
   end
-  spec.files         = Dir["lib/**/*", "README.md", "CHANGELOG.md", "LICENSE.txt"]
-  spec.extra_rdoc_files = ["README.md", "CHANGELOG.md"]
+  spec.files         = Dir["lib/**/*"]
+  spec.extra_rdoc_files = ["README.md", "CHANGELOG.md", "LICENSE.txt"]
   spec.bindir        = "exe"
   spec.require_paths = ["lib"]
 
   spec.add_dependency "equatable", "~> 0.6"
   spec.add_dependency "tty-color", "~> 0.5"
+
+  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec", ">= 3.0"
 end
