@@ -1,6 +1,6 @@
 # Change log
 
-## [v0.7.4] - 2019-11-18
+## [v0.7.4] - 2020-05-08
 
 ### Fixed
 * Fix ColorParser#undecorate to require direct dependency by Nick Pezza(@npezza93)
@@ -122,18 +122,19 @@
 * Change gemspec to include equatable as dependency
 * Change Delegator to stop creating instances and improve performance
 
-[v0.7.3]: https://github.com/peter-murach/pastel/compare/v0.7.2...v0.7.3
-[v0.7.2]: https://github.com/peter-murach/pastel/compare/v0.7.1...v0.7.2
-[v0.7.1]: https://github.com/peter-murach/pastel/compare/v0.7.0...v0.7.1
-[v0.7.0]: https://github.com/peter-murach/pastel/compare/v0.6.1...v0.7.0
-[v0.6.1]: https://github.com/peter-murach/pastel/compare/v0.6.0...v0.6.1
-[v0.6.0]: https://github.com/peter-murach/pastel/compare/v0.5.3...v0.6.0
-[v0.5.3]: https://github.com/peter-murach/pastel/compare/v0.5.2...v0.5.3
-[v0.5.2]: https://github.com/peter-murach/pastel/compare/v0.5.1...v0.5.2
-[v0.5.1]: https://github.com/peter-murach/pastel/compare/v0.5.0...v0.5.1
-[v0.5.0]: https://github.com/peter-murach/pastel/compare/v0.4.0...v0.5.0
-[v0.4.0]: https://github.com/peter-murach/pastel/compare/v0.3.0...v0.4.0
-[v0.3.0]: https://github.com/peter-murach/pastel/compare/v0.2.1...v0.3.0
-[v0.2.1]: https://github.com/peter-murach/pastel/compare/v0.2.0...v0.2.1
-[v0.2.0]: https://github.com/peter-murach/pastel/compare/v0.1.0...v0.2.0
-[v0.1.0]: https://github.com/peter-murach/pastel/compare/v0.1.0
+[v0.7.4]: https://github.com/piotrmurach/pastel/compare/v0.7.3...v0.7.4
+[v0.7.3]: https://github.com/piotrmurach/pastel/compare/v0.7.2...v0.7.3
+[v0.7.2]: https://github.com/piotrmurach/pastel/compare/v0.7.1...v0.7.2
+[v0.7.1]: https://github.com/piotrmurach/pastel/compare/v0.7.0...v0.7.1
+[v0.7.0]: https://github.com/piotrmurach/pastel/compare/v0.6.1...v0.7.0
+[v0.6.1]: https://github.com/piotrmurach/pastel/compare/v0.6.0...v0.6.1
+[v0.6.0]: https://github.com/piotrmurach/pastel/compare/v0.5.3...v0.6.0
+[v0.5.3]: https://github.com/piotrmurach/pastel/compare/v0.5.2...v0.5.3
+[v0.5.2]: https://github.com/piotrmurach/pastel/compare/v0.5.1...v0.5.2
+[v0.5.1]: https://github.com/piotrmurach/pastel/compare/v0.5.0...v0.5.1
+[v0.5.0]: https://github.com/piotrmurach/pastel/compare/v0.4.0...v0.5.0
+[v0.4.0]: https://github.com/piotrmurach/pastel/compare/v0.3.0...v0.4.0
+[v0.3.0]: https://github.com/piotrmurach/pastel/compare/v0.2.1...v0.3.0
+[v0.2.1]: https://github.com/piotrmurach/pastel/compare/v0.2.0...v0.2.1
+[v0.2.0]: https://github.com/piotrmurach/pastel/compare/v0.1.0...v0.2.0
+[v0.1.0]: https://github.com/piotrmurach/pastel/compare/v0.1.0
