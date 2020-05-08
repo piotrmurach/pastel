@@ -372,4 +372,4 @@ $ pastel green 'Unicorns & rainbows!'
 
 ## Copyright
 
-Copyright (c) 2014-2018 Piotr Murach. See LICENSE for further details.
+Copyright (c) 2014 Piotr Murach. See LICENSE for further details.
