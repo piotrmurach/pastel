@@ -23,7 +23,6 @@ Gem::Specification.new do |spec|
   spec.extra_rdoc_files = ["README.md", "CHANGELOG.md"]
   spec.bindir        = "exe"
   spec.require_paths = ["lib"]
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.0.0")
 
   spec.add_dependency "equatable", "~> 0.6"
   spec.add_dependency "tty-color", "~> 0.5"
