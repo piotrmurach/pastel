@@ -21,19 +21,23 @@ module Pastel
   # @example
   #   pastel = Pastel.new enabled: true
   #
+  # @param [Boolean] :enabled
+  #   whether or not to disable coloring
+  # @param [Boolean] :eachline
+  #   whether or not to wrap eachline with separate coloring
+  #
   # @return [Delegator]
   #
   # @api public
-  def new(options = {})
-    unless options.key?(:enabled)
-      options[:enabled] = (TTY::Color.windows? || TTY::Color.color?)
+  def new(enabled: nil, eachline: false)
+    if enabled.nil?
+      enabled = (TTY::Color.windows? || TTY::Color.color?)
     end
-    color    = Color.new(options)
+    color    = Color.new(enabled: enabled, eachline: eachline)
     importer = AliasImporter.new(color, ENV)
     importer.import
     resolver = ColorResolver.new(color)
     Delegator.for(resolver, DecoratorChain.empty)
   end
-
   module_function :new
 end # Pastel

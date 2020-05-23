@@ -24,9 +24,9 @@ module Pastel
     # Initialize a Terminal Color
     #
     # @api public
-    def initialize(options = {})
-      @enabled  = options[:enabled]
-      @eachline = options.fetch(:eachline) { false }
+    def initialize(enabled: nil, eachline: false)
+      @enabled  = enabled
+      @eachline = eachline
       @cache    = {}
     end
 
