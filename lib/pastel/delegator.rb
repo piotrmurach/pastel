@@ -19,7 +19,7 @@ module Pastel
                    :enabled?, :colored?, :alias_color, :lookup
 
     def_delegators ColorParser, :parse
-    alias_method :undecorate, :parse
+    alias undecorate parse
 
     # Create Delegator
     #
@@ -40,7 +40,7 @@ module Pastel
       new(resolver, base)
     end
 
-#    remove_method :inspect
+    remove_method :inspect
 
     # Object string representation
     #
@@ -50,7 +50,7 @@ module Pastel
     def inspect
       "#<Pastel @styles=#{base.map(&:to_s)}>"
     end
-    alias_method :to_s, :inspect
+    alias to_s inspect
 
     protected
 
@@ -68,7 +68,7 @@ module Pastel
     def method_missing(method_name, *args, &block)
       new_base  = base.add(method_name)
       delegator = wrap(new_base)
-      if args.empty? && !(method_name.to_sym == :detach)
+      if args.empty? && method_name.to_sym != :detach
         delegator
       else
         string = args.join
