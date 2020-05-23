@@ -1,8 +1,8 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require "strscan"
 
-require_relative 'ansi'
+require_relative "ansi"
 
 module Pastel
   # Responsible for parsing color symbols out of text with color escapes
@@ -21,7 +21,7 @@ module Pastel
     # sequences
     #
     # @example
-    #   parse("\e[32mfoo\e[0m") # => [{colors: [:green], text: 'foo'}
+    #   parse("\e[32mfoo\e[0m") # => [{colors: [:green], text: "foo"}
     #
     # @param [String] text
     #   the text to parse for presence of color ansi codes
@@ -34,7 +34,7 @@ module Pastel
       state = {}
       result = []
       ansi_stack = []
-      text_chunk = ''
+      text_chunk = []
 
       until scanner.eos?
         char = scanner.getch
@@ -55,10 +55,10 @@ module Pastel
           end
 
           if !text_chunk.empty?
-            state[:text] = text_chunk
+            state[:text] = text_chunk.join
             result.push(state)
             state = {}
-            text_chunk = ''
+            text_chunk.clear
           end
         elsif char == ESC # broken escape
           text_chunk << char + delim.to_s
@@ -68,7 +68,7 @@ module Pastel
       end
 
       if !text_chunk.empty?
-        state[:text] = text_chunk
+        state[:text] = text_chunk.join
       end
       if !ansi_stack.empty?
         unpack_ansi(ansi_stack) { |attr, name| state[attr] = name}

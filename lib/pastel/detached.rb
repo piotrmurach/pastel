@@ -1,6 +1,6 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
-require 'equatable'
+require "equatable"
 
 module Pastel
   # A class representing detached color

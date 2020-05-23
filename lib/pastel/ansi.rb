@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 module Pastel
   # Mixin that provides ANSI codes

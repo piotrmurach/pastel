@@ -1,5 +1,5 @@
-# coding: utf-8
+# frozen_string_literal: true
 
 module Pastel
-  VERSION = '0.7.4'
+  VERSION = "0.7.4"
 end

@@ -1,8 +1,8 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
-require 'equatable'
+require "equatable"
 
-require_relative 'ansi'
+require_relative "ansi"
 
 module Pastel
   # A class responsible for coloring strings.
@@ -104,7 +104,7 @@ module Pastel
     #
     # @api public
     def strip(*strings)
-      modified = strings.map { |string| string.dup.gsub(ANSI_COLOR_REGEXP, '') }
+      modified = strings.map { |string| string.dup.gsub(ANSI_COLOR_REGEXP, "") }
       modified.size == 1 ? modified[0] : modified
     end
 
@@ -138,7 +138,7 @@ module Pastel
     # @api private
     def lookup(*colors)
       @cache.fetch(colors) do
-        @cache[colors] = "\e[#{code(*colors).join(';')}m"
+        @cache[colors] = "\e[#{code(*colors).join(";")}m"
       end
     end
 
@@ -228,13 +228,13 @@ module Pastel
     #
     # @api private
     def blank?(value)
-      value.nil? || !value.respond_to?(:to_str) || value.to_s == ''
+      value.nil? || !value.respond_to?(:to_str) || value.to_s == ""
     end
 
     # @api private
     def validate(*colors)
       return if valid?(*colors)
-      fail InvalidAttributeNameError, 'Bad style or unintialized constant, ' \
+      fail InvalidAttributeNameError, "Bad style or unintialized constant, " \
         " valid styles are: #{style_names.join(', ')}."
     end
   end # Color

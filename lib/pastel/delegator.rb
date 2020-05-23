@@ -1,10 +1,10 @@
-# coding: utf-8
+# frozen_string_literal: true
 
-require 'equatable'
-require 'forwardable'
+require "equatable"
+require "forwardable"
 
-require_relative 'color_parser'
-require_relative 'decorator_chain'
+require_relative "color_parser"
+require_relative "decorator_chain"
 
 module Pastel
   # Wrapes the {DecoratorChain} to allow for easy resolution
@@ -15,7 +15,7 @@ module Pastel
     extend Forwardable
     include Equatable
 
-    def_delegators '@resolver.color', :valid?, :styles, :strip, :decorate,
+    def_delegators "@resolver.color", :valid?, :styles, :strip, :decorate,
                    :enabled?, :colored?, :alias_color, :lookup
 
     def_delegators ColorParser, :parse
@@ -40,7 +40,7 @@ module Pastel
       new(resolver, base)
     end
 
-    remove_method :inspect
+#    remove_method :inspect
 
     # Object string representation
     #
