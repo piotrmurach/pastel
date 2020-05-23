@@ -17,7 +17,7 @@ module Pastel
     ANSI_COLOR_REGEXP = /\x1b+(\[|\[\[)[0-9;:?]+m/mo.freeze
 
     attr_reader :enabled
-    alias_method :enabled?, :enabled
+    alias enabled? enabled
 
     attr_reader :eachline
 
@@ -138,7 +138,7 @@ module Pastel
     # @api private
     def lookup(*colors)
       @cache.fetch(colors) do
-        @cache[colors] = "\e[#{code(*colors).join(";")}m"
+        @cache[colors] = "\e[#{code(*colors).join(';')}m"
       end
     end
 
@@ -210,10 +210,10 @@ module Pastel
       validate(*colors)
 
       if !(alias_name.to_s =~ /^[\w]+$/)
-        fail InvalidAliasNameError, "Invalid alias name `#{alias_name}`"
+        raise InvalidAliasNameError, "Invalid alias name `#{alias_name}`"
       elsif ANSI::ATTRIBUTES[alias_name]
-        fail InvalidAliasNameError,
-             "Cannot alias standard color `#{alias_name}`"
+        raise InvalidAliasNameError,
+              "Cannot alias standard color `#{alias_name}`"
       end
 
       ALIASES[alias_name.to_sym] = colors.map(&ANSI::ATTRIBUTES.method(:[]))
@@ -234,7 +234,8 @@ module Pastel
     # @api private
     def validate(*colors)
       return if valid?(*colors)
-      fail InvalidAttributeNameError, "Bad style or unintialized constant, " \
+
+      raise InvalidAttributeNameError, "Bad style or unintialized constant, " \
         " valid styles are: #{style_names.join(', ')}."
     end
   end # Color
