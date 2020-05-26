@@ -1,5 +1,12 @@
 # Change log
 
+## [v0.8.0] - 2020-05-xx
+
+### Changed
+* Change gemspec to require Ruby 2.0 or higher
+* Change Pastel#new to use keyword arguments in place of hash options
+* Change to freeze all strings
+
 ## [v0.7.4] - 2020-05-08
 
 ### Fixed
@@ -122,6 +129,7 @@
 * Change gemspec to include equatable as dependency
 * Change Delegator to stop creating instances and improve performance
 
+[v0.8.0]: https://github.com/piotrmurach/pastel/compare/v0.7.4...v0.8.0
 [v0.7.4]: https://github.com/piotrmurach/pastel/compare/v0.7.3...v0.7.4
 [v0.7.3]: https://github.com/piotrmurach/pastel/compare/v0.7.2...v0.7.3
 [v0.7.2]: https://github.com/piotrmurach/pastel/compare/v0.7.1...v0.7.2
