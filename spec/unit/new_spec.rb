@@ -1,6 +1,6 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
-RSpec.describe Pastel, '#new' do
+RSpec.describe Pastel, "#new" do
 
   subject(:pastel) { described_class.new(enabled: true) }
 
@@ -12,7 +12,7 @@ RSpec.describe Pastel, '#new' do
 
   it { is_expected.to respond_to(:strip) }
 
-  describe '#valid?' do
+  describe "#valid?" do
     it "when valid returns true" do
       expect(pastel.valid?(:red)).to eq(true)
     end
@@ -22,14 +22,14 @@ RSpec.describe Pastel, '#new' do
     end
   end
 
-  describe '#colored?' do
+  describe "#colored?" do
     it "checks if string is colored" do
       expect(pastel.colored?("\e[31mfoo\e[0m")).to eq(true)
     end
   end
 
-  describe 'options passed in' do
-    it 'defaults enabled to color detection' do
+  describe "options passed in" do
+    it "defaults enabled to color detection" do
       allow(TTY::Color).to receive(:color?).and_return(true)
       allow(TTY::Color).to receive(:windows?).and_return(false)
 
@@ -52,7 +52,7 @@ RSpec.describe Pastel, '#new' do
     it "sets enabled option" do
       pastel = described_class.new(enabled: false)
       expect(pastel.enabled?).to eq(false)
-      expect(pastel.red('Unicorn', pastel.green('!'))).to eq('Unicorn!')
+      expect(pastel.red("Unicorn", pastel.green("!"))).to eq("Unicorn!")
     end
 
     it "sets eachline option" do

@@ -1,6 +1,6 @@
-# coding: utf-8
+# frozen_string_literal: true
 
-RSpec.describe Pastel, '.respond_to?' do
+RSpec.describe Pastel, ".respond_to?" do
   subject(:pastel) { described_class.new(enabled: true) }
 
   it "responds correctly to color method" do

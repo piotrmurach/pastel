@@ -1,12 +1,12 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
-RSpec.describe Pastel, '#undecorate' do
+RSpec.describe Pastel, "#undecorate" do
   subject(:pastel) { described_class.new(enabled: true) }
 
   it "undecorates string detecting color escape codes" do
-    string = pastel.red.on_green('foo')
+    string = pastel.red.on_green("foo")
     expect(pastel.undecorate(string)).to eq([
-      {foreground: :red, background: :on_green, text: 'foo'}
+      {foreground: :red, background: :on_green, text: "foo"}
     ])
   end
 end

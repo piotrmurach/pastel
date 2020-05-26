@@ -1,28 +1,28 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
-RSpec.describe Pastel::Color, '.alias_color' do
+RSpec.describe Pastel::Color, ".alias_color" do
 
   subject(:color) { described_class.new(enabled: true) }
 
-  it 'aliases non existent color' do
+  it "aliases non existent color" do
     expect {
       color.alias_color(:funky, :unknown)
     }.to raise_error(Pastel::InvalidAttributeNameError)
   end
 
-  it 'aliases color with invalid name' do
+  it "aliases color with invalid name" do
     expect {
-      color.alias_color('some name', :red)
+      color.alias_color("some name", :red)
     }.to raise_error(Pastel::InvalidAliasNameError, /Invalid alias name/)
   end
 
-  it 'aliases standard color' do
+  it "aliases standard color" do
     expect {
       color.alias_color(:red, :red)
     }.to raise_error(Pastel::InvalidAliasNameError, /alias standard color/)
   end
 
-  it 'aliases color :red to :funky' do
+  it "aliases color :red to :funky" do
     color.alias_color(:funky, :red, :bold)
     expect(color.valid?(:funky)).to eq(true)
     expect(color.code(:funky)).to eq([[31, 1]])

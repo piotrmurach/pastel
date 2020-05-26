@@ -1,4 +1,4 @@
-# coding: utf-8
+# frozen_string_literal: true
 
 RSpec.describe Pastel::DecoratorChain do
   it "is enumerable" do
@@ -11,8 +11,8 @@ RSpec.describe Pastel::DecoratorChain do
 
   describe ".each" do
     it "yields each decorator" do
-      first   = double('first')
-      second  = double('second')
+      first   = double("first")
+      second  = double("second")
       chain   = described_class.new.add(first).add(second)
       yielded = []
 
