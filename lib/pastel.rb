@@ -37,7 +37,7 @@ module Pastel
     importer = AliasImporter.new(color, ENV)
     importer.import
     resolver = ColorResolver.new(color)
-    Delegator.for(resolver, DecoratorChain.empty)
+    Delegator.wrap(resolver, DecoratorChain.empty)
   end
   module_function :new
 end # Pastel

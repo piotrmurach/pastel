@@ -21,25 +21,28 @@ module Pastel
     def_delegators ColorParser, :parse
     alias undecorate parse
 
+    # Wrap resolver and chain
+    #
+    # @api public
+    def self.wrap(resolver, chain)
+      new(resolver, chain)
+    end
+
     # Create Delegator
     #
     # Used internally by {Pastel}
     #
     # @param [ColorResolver] resolver
     #
-    # @param [DecoratorChain] base
+    # @param [DecoratorChain] chain
     #
     # @api private
-    def initialize(resolver, base)
+    def initialize(resolver, chain)
       @resolver = resolver
-      @base     = base
+      @chain = chain
     end
 
-    # @api public
-    def self.for(resolver, base)
-      new(resolver, base)
-    end
-
+    # Remove equatable default definition
     remove_method :inspect
 
     # Object string representation
@@ -48,35 +51,34 @@ module Pastel
     #
     # @api
     def inspect
-      "#<Pastel @styles=#{base.map(&:to_s)}>"
+      "#<Pastel @styles=#{chain.map(&:to_s)}>"
     end
     alias to_s inspect
 
     protected
 
-    attr_reader :base
+    attr_reader :chain
 
     attr_reader :resolver
 
-    # Wrap colors
+    # Handles color method calls
     #
     # @api private
-    def wrap(base)
-      self.class.new(resolver, base)
-    end
-
     def method_missing(method_name, *args, &block)
-      new_base  = base.add(method_name)
-      delegator = wrap(new_base)
+      new_chain = chain.add(method_name)
+      delegator = self.class.wrap(resolver, new_chain)
       if args.empty? && method_name.to_sym != :detach
         delegator
       else
-        string = args.join
-        string << evaluate_block(&block) if block_given?
-        resolver.resolve(new_base, string)
+        strings = args.dup
+        strings << evaluate_block(&block) if block_given?
+        resolver.resolve(new_chain, strings.join)
       end
     end
 
+    # Check if color is valid
+    #
+    # @api private
     def respond_to_missing?(name, include_all = false)
       resolver.color.respond_to?(name, include_all) ||
         resolver.color.valid?(name) || super
