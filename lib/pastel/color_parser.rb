@@ -13,8 +13,8 @@ module Pastel
   class ColorParser
     include ANSI
 
-    ESC = "\x1b".freeze
-    CSI = "\[".freeze
+    ESC = "\x1b"
+    CSI = "\["
 
     # Parse color escape sequences into a list of hashes
     # corresponding to the color attributes being set by these

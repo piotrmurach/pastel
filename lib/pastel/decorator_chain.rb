@@ -10,11 +10,25 @@ module Pastel
     include Enumerable
     include Equatable
 
+    # Create an empty decorator chain
+    #
+    # @return [DecoratorChain]
+    #
+    # @api public
+    def self.empty
+      new
+    end
+
+    # Create a decorator chain
+    #
+    # @api public
     def initialize(decorators = [])
       @decorators = decorators
     end
 
     # Add decorator
+    #
+    # @param [String] decorator
     #
     # @api public
     def add(decorator)
@@ -30,15 +44,6 @@ module Pastel
     # @api public
     def each(&block)
       decorators.each(&block)
-    end
-
-    # Create an empty decorator chain
-    #
-    # @return [DecoratorChain]
-    #
-    # @api public
-    def self.empty
-      new([])
     end
 
     protected

@@ -35,7 +35,7 @@ module Pastel
       value = args.join
       @color.decorate(value, *styles)
     end
-    alias_method :[], :call
+    alias [] call
 
     # @api public
     def to_proc
