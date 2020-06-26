@@ -14,7 +14,7 @@ module Pastel
     ALIASES = {}
 
     # Match all color escape sequences
-    ANSI_COLOR_REGEXP = /\x1b+(\[|\[\[)[0-9;:?]+m/mo.freeze
+    ANSI_COLOR_REGEXP = /\x1b+(\[|\[\[)[0-9;:?]*m/mo.freeze
 
     attr_reader :enabled
     alias enabled? enabled

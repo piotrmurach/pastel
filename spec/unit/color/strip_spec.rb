@@ -53,4 +53,9 @@ RSpec.describe Pastel::Color, '.strip' do
     string = "This is a \e[1m\e[34mbold blue text\e[0m"
     expect(color.strip(string)).to eq("This is a bold blue text")
   end
+
+  it 'strips "\e[m" no-color code produced by some standard programs ' do
+    string = "\e[?1h\e=\r\e[33m438b059\e[m Change to bump version up\e[m\r\n\r\e[K\e[?1l\e>"
+    expect(color.strip(string)).to eq("\e[?1h\e=\r438b059 Change to bump version up\r\n\r\e[K\e[?1l\e>")
+  end
 end
