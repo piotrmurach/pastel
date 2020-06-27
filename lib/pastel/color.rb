@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
-require "equatable"
-
 require_relative "ansi"
 
 module Pastel
   # A class responsible for coloring strings.
   class Color
-    include Equatable
     include ANSI
 
     # All color aliases
@@ -218,6 +215,44 @@ module Pastel
 
       ALIASES[alias_name.to_sym] = colors.map(&ANSI::ATTRIBUTES.method(:[]))
       colors
+    end
+
+    # Compare colors for equality of attributes
+    #
+    # @return [Boolean]
+    #
+    # @api public
+    def eql?(other)
+      instance_of?(other.class) &&
+        enabled.eql?(other.enabled) && eachline.eql?(other.eachline)
+    end
+
+    # Compare colors for equivalence of attributes
+    #
+    # @return [Boolean]
+    #
+    # @api public
+    def ==(other)
+      other.is_a?(self.class) &&
+        enabled == other.enabled && eachline == other.eachline
+    end
+
+    # Inspect this instance attributes
+    #
+    # @return [String]
+    #
+    # @api public
+    def inspect
+      "#<#{self.class.name} enabled=#{enabled.inspect} eachline=#{eachline.inspect}>"
+    end
+
+    # Hash for this instance and its attributes
+    #
+    # @return [Numeric]
+    #
+    # @api public
+    def hash
+      [self.class, enabled, eachline].hash
     end
 
     private

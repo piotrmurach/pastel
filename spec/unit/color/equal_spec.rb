@@ -1,9 +1,14 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
-RSpec.describe Pastel::Color, '#==' do
-  it "is true with the same enabled and eachline attributes" do
+RSpec.describe Pastel::Color, "#==" do
+  it "is true with equal attributes" do
     expect(Pastel::Color.new(enabled: false, eachline: "\n")).
       to eq(Pastel::Color.new(enabled: false, eachline: "\n"))
+  end
+
+  it "is true with equivalent attributes" do
+    expect(Pastel::Color.new(enabled: false, eachline: "\n")).
+      to eql(Pastel::Color.new(enabled: false, eachline: "\n"))
   end
 
   it "is false with different enabled attribute" do
