@@ -1,11 +1,15 @@
 # Change log
 
-## [v0.8.0] - 2020-05-xx
+## [v0.8.0] - 2020-07-xx
 
 ### Changed
 * Change gemspec to require Ruby 2.0 or higher
 * Change Pastel#new to use keyword arguments in place of hash options
 * Change to freeze all strings
+* Remove equatable dependency
+
+### Fixed
+* Fix Pastel#strip to recognise no-number reset by DanielVartanov(@DanielVartanov)
 
 ## [v0.7.4] - 2020-05-08
 
