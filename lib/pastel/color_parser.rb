@@ -21,7 +21,8 @@ module Pastel
     # sequences
     #
     # @example
-    #   parse("\e[32mfoo\e[0m") # => [{colors: [:green], text: "foo"}
+    #   parse("\e[32mfoo\e[0m")
+    #   # => [{foreground: :green, text: "foo"}
     #
     # @param [String] text
     #   the text to parse for presence of color ansi codes
