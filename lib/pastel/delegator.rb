@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "equatable"
 require "forwardable"
 
 require_relative "color_parser"
@@ -13,7 +12,6 @@ module Pastel
   # @api private
   class Delegator
     extend Forwardable
-    include Equatable
 
     def_delegators "@resolver.color", :valid?, :styles, :strip, :decorate,
                    :enabled?, :colored?, :alias_color, :lookup
@@ -42,8 +40,23 @@ module Pastel
       @chain = chain
     end
 
-    # Remove equatable default definition
-    remove_method :inspect
+    # Compare delegated objects for equality of attributes
+    #
+    # @return [Boolean]
+    #
+    # @api public
+    def eql?(other)
+      instance_of?(other.class) && chain.eql?(other.chain)
+    end
+
+    # Compare delegated objects for equivalence of attributes
+    #
+    # @return [Boolean]
+    #
+    # @api public
+    def ==(other)
+      other.is_a?(self.class) && chain == other.chain
+    end
 
     # Object string representation
     #
@@ -51,9 +64,18 @@ module Pastel
     #
     # @api
     def inspect
-      "#<Pastel @styles=#{chain.map(&:to_s)}>"
+      "#<Pastel styles=#{chain.map(&:to_s)}>"
     end
     alias to_s inspect
+
+    # Hash for this instance and its attributes
+    #
+    # @return [Numeric]
+    #
+    # @api public
+    def hash
+      [self.class, chain].hash
+    end
 
     protected
 

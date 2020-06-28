@@ -6,16 +6,58 @@ RSpec.describe Pastel::Delegator do
     expect(pastel.red).to be_a(Pastel::Delegator)
   end
 
-  describe ".inspect" do
-    it "inspects delegator styles chain" do
-      chain = %w[red on_green]
-      delegator = described_class.new(:resolver, chain)
-      allow(delegator).to receive(:styles).and_return(red: 31, on_green: 42)
-      expect(delegator.inspect).to eq("#<Pastel @styles=[\"red\", \"on_green\"]>")
+  describe "#==" do
+    let(:resolver) { double(:resolver) }
+
+    it "is equivalent with the same styles" do
+      expect(described_class.new(resolver, [:red, :bold])).
+        to eq(described_class.new(resolver, [:red, :bold]))
+    end
+
+    it "is not equivalent with different styles" do
+      expect(described_class.new(resolver, [:red, :bold])).
+        not_to eq(described_class.new(resolver, [:green, :bold]))
+    end
+
+    it "is not equivalent to another type" do
+      expect(described_class.new(resolver, [:red, :bold])).not_to eq(:other)
     end
   end
 
-  describe ".respond_to_missing?" do
+  describe "#eql?" do
+    let(:resolver) { double(:resolver) }
+
+    it "is equal with the same styles" do
+      expect(described_class.new(resolver, [:red, :bold])).
+        to eql(described_class.new(resolver, [:red, :bold]))
+    end
+
+    it "is not equal with different styles" do
+      expect(described_class.new(resolver, [:red, :bold])).
+        not_to eql(described_class.new(resolver, [:green, :bold]))
+    end
+
+    it "is not equal to another type" do
+      expect(described_class.new(resolver, [:red, :bold])).not_to eql(:other)
+    end
+  end
+
+  describe "#inspect" do
+    it "inspects delegator styles chain" do
+      delegator = described_class.new(:resolver, [:red, :on_green])
+      allow(delegator).to receive(:styles).and_return(red: 31, on_green: 42)
+      expect(delegator.inspect).to eq("#<Pastel styles=[\"red\", \"on_green\"]>")
+    end
+  end
+
+  describe "#hash" do
+    it "calculates object hash" do
+      expect(described_class.new(:resolver, [:red, :on_green]).hash).
+        to be_a_kind_of(Numeric)
+    end
+  end
+
+  describe "#respond_to_missing?" do
     context "for a method defined on" do
       it "returns true" do
         resolver = double(:resolver)
