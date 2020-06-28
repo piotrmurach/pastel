@@ -39,7 +39,7 @@
 
 Add this line to your application's Gemfile:
 
-    gem 'pastel'
+    gem "pastel"
 
 And then execute:
 
@@ -76,7 +76,7 @@ Or install it yourself as:
 ```ruby
 pastel = Pastel.new
 
-puts pastel.red('Unicorns!')
+puts pastel.red("Unicorns!")
 ```
 
 **Pastel** doesn't print the colored string out, just returns it, you'll have to print it yourself.
@@ -84,46 +84,46 @@ puts pastel.red('Unicorns!')
 You can compose multiple styles through chainable API:
 
 ```ruby
-pastel.red.on_green.bold('Unicorns!')
+pastel.red.on_green.bold("Unicorns!")
 ```
 
 It allows you to combine styled strings with unstyled ones:
 
 ```ruby
-pastel.red('Unicorns') + ' will rule ' + pastel.green('the World!')
+pastel.red("Unicorns") + " will rule " + pastel.green("the World!")
 ```
 
 It supports variable number of arguments:
 
 ```ruby
-pastel.red('Unicorns', 'are', 'running', 'everywhere!')
+pastel.red("Unicorns", "are", "running", "everywhere!")
 ```
 
 You can also nest styles as follows:
 
 ```ruby
-pastel.red('Unicorns ', pastel.on_green('everywhere!'))
+pastel.red("Unicorns ", pastel.on_green("everywhere!"))
 ```
 
 Nesting is smart enough to know where one color ends and another one starts:
 
 ```ruby
-pastel.red('Unicorns ' + pastel.green('everywhere') + pastel.on_yellow('!'))
+pastel.red("Unicorns " + pastel.green("everywhere") + pastel.on_yellow("!"))
 ```
 
 You can also nest styles inside blocks:
 
 ```ruby
-pastel.red.on_green('Unicorns') {
-  green.on_red('will ', 'dominate') {
-    yellow('the world!')
+pastel.red.on_green("Unicorns") {
+  green.on_red("will ", "dominate") {
+    yellow("the world!")
   }
 }
 ```
 
 When dealing with multiline strings you can set `eachline` option(more info see [eachline](#211-eachline)):
 
-```
+```ruby
 pastel = Pastel.new(eachline: "\n")
 ```
 
@@ -133,8 +133,8 @@ You can also predefine needed styles and reuse them:
 error    = pastel.red.bold.detach
 warning  = pastel.yellow.detach
 
-puts error.('Error!')
-puts warning.('Warning')
+puts error.("Error!")
+puts warning.("Warning")
 ```
 
 If your output is redirected to a file, you probably don't want Pastel to add color to your text.
@@ -143,7 +143,7 @@ See https://github.com/piotrmurach/pastel#210-enabled for a way to easily accomp
 **Pastel** has companion library called `pastel-cli` that allows you to style text in terminal via `pastel` executable:
 
 ```bash
-$ pastel green 'Unicorns & rainbows!'
+$ pastel green "Unicorns & rainbows!"
 ```
 
 ## 2 Interface
@@ -155,7 +155,7 @@ pastel.`<color>[.<color>...](string, [string...])`
 Color styles are invoked as method calls with a string argument. A given color can take any number of strings as arguments. Then it returns a colored string which isn't printed out to terminal. You need to print it yourself if you need to. This is done so that you can save it as a string, pass to something else, send it to a file handle and so on.
 
 ```ruby
-pastel.red('Unicorns ', pastel.bold.underline('everywhere'), '!')
+pastel.red("Unicorns ", pastel.bold.underline("everywhere"), "!")
 ```
 
 Please refer to [3. Supported Colors](#3-supported-colors) section for full list of supported styles.
@@ -165,7 +165,7 @@ Please refer to [3. Supported Colors](#3-supported-colors) section for full list
 This method is a lower level string styling call that takes as the first argument the string to style followed by any number of color attributes, and returns string wrapped in styles.
 
 ```ruby
-pastel.decorate('Unicorn', :green, :on_blue, :bold)
+pastel.decorate("Unicorn", :green, :on_blue, :bold)
 ```
 
 This method will be useful in situations where colors are provided as a list of parameters that have been generated dynamically.
@@ -176,7 +176,7 @@ It performs the opposite to `decorate` method by turning color escape sequences 
 
 ```ruby
 pastel.undecorate("\e[32mfoo\e[0m \e[31mbar\e[0m")
-# => [{foreground: :green, text: 'foo'}, {text: ' '}, {foreground: :red, text: 'bar'}]
+# => [{foreground: :green, text: "foo"}, {text: " "}, {foreground: :red, text: "bar"}]
 ```
 
 To translate the color name into sequence use [lookup](#27-lookup)
@@ -188,9 +188,9 @@ The `detach` method allows to keep all the associated colors with the detached i
 ```ruby
 notice = pastel.blue.bold.detach
 
-notice.call('Unicorns running')
-notice.('Unicorns running')
-notice['Unicorns running']
+notice.call("Unicorns running")
+notice.("Unicorns running")
+notice["Unicorns running"]
 ```
 
 ### 2.5 Strip
@@ -278,7 +278,7 @@ pastel.alias_color(:funky, :red, :bold)
 From that point forward, `:funky` alias can be passed to `decorate`, `valid?` with the same meaning as standard colors:
 
 ```ruby
-pastel.funky.on_green('unicorn')   # => will use :red, :bold color
+pastel.funky.on_green("unicorn")   # => will use :red, :bold color
 ```
 
 This method allows you to give more meaningful names to existing colors.
@@ -351,7 +351,7 @@ This environment variable allows you to specify custom color aliases at runtime 
 Only alphanumeric and `_` and `.` are allowed in the alias names with the following format:
 
 ```ruby
-PASTEL_COLORS_ALIASES='newcolor_1=red,newcolor_2=on_green,funky=red.bold'
+PASTEL_COLORS_ALIASES="newcolor_1=red,newcolor_2=on_green,funky=red.bold"
 ```
 
 ## 5. Command line
@@ -369,6 +369,10 @@ $ pastel green 'Unicorns & rainbows!'
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+## Code of Conduct
+
+Everyone interacting in the Pastel project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/piotrmurach/pastel/blob/master/CODE_OF_CONDUCT.md).
 
 ## Copyright
 
