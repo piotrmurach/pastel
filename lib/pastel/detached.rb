@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
-require "equatable"
-
 module Pastel
   # A class representing detached color
   class Detached
-    include Equatable
-
     # Initialize a detached object
     #
     # @param [Pastel::Color] color
@@ -24,6 +20,8 @@ module Pastel
     # Decorate the values corresponding to styles
     #
     # @example
+    #   Detached(Color.new, :red, :bold).call("hello")
+    #   # => "\e[31mhello\e[0m"
     #
     # @param [String] value
     #   the stirng to decorate with styles
@@ -42,7 +40,43 @@ module Pastel
       self
     end
 
-    private
+    # Compare detached objects for equality of attributes
+    #
+    # @return [Boolean]
+    #
+    # @api public
+    def eql?(other)
+      instance_of?(other.class) && styles.eql?(other.styles)
+    end
+
+    # Compare detached objects for equivalence of attributes
+    #
+    # @return [Boolean]
+    #
+    # @api public
+    def ==(other)
+      other.is_a?(self.class) && styles == other.styles
+    end
+
+    # Inspect this instance attributes
+    #
+    # @return [String]
+    #
+    # @api public
+    def inspect
+      "#<#{self.class.name} styles=#{styles.inspect}>"
+    end
+
+    # Hash for this instance and its attributes
+    #
+    # @return [Numeric]
+    #
+    # @api public
+    def hash
+      [self.class, styles].hash
+    end
+
+    protected
 
     # @api private
     attr_reader :styles
