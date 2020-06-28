@@ -13,13 +13,13 @@ module Pastel
     #
     # @api public
     def self.empty
-      new
+      @empty ||= self.new
     end
 
     # Create a decorator chain
     #
     # @api public
-    def initialize(decorators = [])
+    def initialize(decorators = [].freeze)
       @decorators = decorators
     end
 

@@ -5,7 +5,13 @@ RSpec.describe Pastel::DecoratorChain do
     expect(described_class.new).to be_a(Enumerable)
   end
 
-  describe ".each" do
+  describe ".empty" do
+    it "memoizes an empty chain" do
+      expect(described_class.empty.object_id).to eq(described_class.empty.object_id)
+    end
+  end
+
+  describe "#each" do
     it "yields each decorator" do
       first   = double("first")
       second  = double("second")
