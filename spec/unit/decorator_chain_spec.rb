@@ -18,7 +18,7 @@ RSpec.describe Pastel::DecoratorChain do
     end
   end
 
-  describe ".==" do
+  describe "#==" do
     it "is equivalent with the same decorator" do
       expect(described_class.new.add(:foo).add(:bar)).
         to eq(described_class.new.add(:foo).add(:bar))
@@ -35,7 +35,7 @@ RSpec.describe Pastel::DecoratorChain do
     end
   end
 
-  describe ".eql?" do
+  describe "#eql?" do
     it "is equal with the same decorator" do
       expect(described_class.new.add(:foo).add(:bar)).
         to eql(described_class.new.add(:foo).add(:bar))
@@ -52,9 +52,15 @@ RSpec.describe Pastel::DecoratorChain do
     end
   end
 
-  describe ".inspect" do
+  describe "#inspect" do
     it "displays object information" do
       expect(described_class.new.inspect).to eq("#<Pastel::DecoratorChain decorators=[]>")
+    end
+  end
+
+  describe "#hash" do
+    it "calculates object hash" do
+      expect(described_class.new.hash).to be_a_kind_of(Numeric)
     end
   end
 end
