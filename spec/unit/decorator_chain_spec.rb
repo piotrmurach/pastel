@@ -5,10 +5,6 @@ RSpec.describe Pastel::DecoratorChain do
     expect(described_class.new).to be_a(Enumerable)
   end
 
-  it "is equatable" do
-    expect(described_class.new).to be_a(Equatable)
-  end
-
   describe ".each" do
     it "yields each decorator" do
       first   = double("first")
@@ -39,9 +35,26 @@ RSpec.describe Pastel::DecoratorChain do
     end
   end
 
+  describe ".eql?" do
+    it "is equal with the same decorator" do
+      expect(described_class.new.add(:foo).add(:bar)).
+        to eql(described_class.new.add(:foo).add(:bar))
+    end
+
+    it "is not equal with different decorator" do
+      expect(described_class.new.add(:foo).add(:bar)).
+        not_to eql(described_class.new.add(:foo).add(:baz))
+    end
+
+    it "is not equal to another type" do
+      expect(described_class.new.add(:foo).add(:bar)).
+        not_to eql(:other)
+    end
+  end
+
   describe ".inspect" do
     it "displays object information" do
-      expect(described_class.new.inspect).to match(/decorators=\[\]/)
+      expect(described_class.new.inspect).to eq("#<Pastel::DecoratorChain decorators=[]>")
     end
   end
 end
