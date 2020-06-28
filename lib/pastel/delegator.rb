@@ -22,7 +22,7 @@ module Pastel
     # Wrap resolver and chain
     #
     # @api public
-    def self.wrap(resolver, chain)
+    def self.wrap(resolver, chain = DecoratorChain.empty)
       new(resolver, chain)
     end
 
@@ -110,7 +110,7 @@ module Pastel
     #
     # @api private
     def evaluate_block(&block)
-      delegator = self.class.new(resolver, DecoratorChain.empty)
+      delegator = self.class.wrap(resolver)
       delegator.instance_eval(&block)
     end
   end # Delegator

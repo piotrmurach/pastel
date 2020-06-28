@@ -6,7 +6,6 @@ require_relative "pastel/alias_importer"
 require_relative "pastel/color"
 require_relative "pastel/color_resolver"
 require_relative "pastel/delegator"
-require_relative "pastel/decorator_chain"
 require_relative "pastel/version"
 
 module Pastel
@@ -37,7 +36,7 @@ module Pastel
     importer = AliasImporter.new(color, ENV)
     importer.import
     resolver = ColorResolver.new(color)
-    Delegator.wrap(resolver, DecoratorChain.empty)
+    Delegator.wrap(resolver)
   end
   module_function :new
 end # Pastel
