@@ -64,4 +64,44 @@ RSpec.describe Pastel::ColorParser, "::parse" do
       {text: "\eA foo bar ESC\e"}
     ])
   end
+
+  it "parses styles from parent text in nested text" do
+    pastel = Pastel.new
+    colored = pastel.bold.on_yellow("foo" + pastel.blue("bar") + "baz")
+    parsed = parser.parse(colored)
+
+    expect(parsed).to eq([
+      {text: "foo", style: :bold, background: :on_yellow},
+      {text: "bar", foreground: :blue, style: :bold, background: :on_yellow},
+      {text: "baz", style: :bold, background: :on_yellow}
+    ])
+  end
+
+  it "parses color when overriden in nested text" do
+    pastel = Pastel.new
+    colored = pastel.yellow.on_red("foo" + pastel.green.bold.on_cyan("bar") + "baz")
+    parsed = parser.parse(colored)
+
+    expect(parsed).to eq([
+      {text: "foo", foreground: :yellow, background: :on_red},
+      {text: "bar", foreground: :green, style: :bold, background: :on_cyan},
+      {text: "baz", foreground: :yellow, background: :on_red}
+    ])
+  end
+
+  it "parses colors nested with blocks" do
+   pastel = Pastel.new
+   colored = pastel.red.on_green("foo") do
+               green.on_red("bar ", "baz") do
+                 yellow("qux")
+               end
+             end
+
+    parsed = parser.parse(colored)
+    expect(parsed).to eq([
+      {text: "foo", foreground: :red, background: :on_green},
+      {text: "bar baz", foreground: :green, background: :on_red},
+      {text: "qux", foreground: :yellow, background: :on_red}
+    ])
+  end
 end

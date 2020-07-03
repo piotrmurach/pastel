@@ -41,14 +41,13 @@ module Pastel
         char = scanner.getch
         # match control
         if char == ESC && (delim = scanner.getch) == CSI
-          if scanner.scan(/^0m/)
+          if scanner.scan(/^0?m/) # reset
             unpack_ansi(ansi_stack) { |attr, name| state[attr] = name }
             ansi_stack = []
           elsif scanner.scan(/^([1-9;:]+)m/)
             # ansi codes separated by text
             if !text_chunk.empty? && !ansi_stack.empty?
               unpack_ansi(ansi_stack) { |attr, name| state[attr] = name }
-              ansi_stack = []
             end
             scanner[1].split(/:|;/).each do |code|
               ansi_stack << code
@@ -74,7 +73,7 @@ module Pastel
       if !ansi_stack.empty?
         unpack_ansi(ansi_stack) { |attr, name| state[attr] = name}
       end
-      if state.values.any? { |val| !val.empty? }
+      if !state[:text].to_s.empty?
         result.push(state)
       end
       result
@@ -89,10 +88,8 @@ module Pastel
     #
     # @api private
     def self.unpack_ansi(ansi_stack)
-      ansi_stack.each do |ansi|
-        name = ansi_for(ansi)
-        attr = attribute_for(ansi)
-        yield attr, name
+      ansi_stack.each do |code|
+        yield(attribute_name(code), color_name(code))
       end
     end
 
@@ -104,7 +101,7 @@ module Pastel
     # @return [Symbol]
     #
     # @api private
-    def self.attribute_for(ansi)
+    def self.attribute_name(ansi)
       if ANSI.foreground?(ansi)
         :foreground
       elsif ANSI.background?(ansi)
@@ -114,9 +111,13 @@ module Pastel
       end
     end
 
+    # Convert ANSI code to color name
+    #
+    # @return [String]
+    #
     # @api private
-    def self.ansi_for(ansi)
-      ATTRIBUTES.key(ansi.to_i)
+    def self.color_name(ansi_code)
+      ATTRIBUTES.key(ansi_code.to_i)
     end
   end # Parser
 end # Pastel
