@@ -1,6 +1,6 @@
 # Change log
 
-## [v0.8.0] - 2020-07-xx
+## [v0.8.0] - 2020-07-04
 
 ### Changed
 * Change gemspec to require Ruby 2.0 or higher
@@ -10,6 +10,7 @@
 
 ### Fixed
 * Fix Pastel#strip to recognise no-number reset by DanielVartanov(@DanielVartanov)
+* Fix Pastel#undecorate to correctly assign styles for nested colors
 
 ## [v0.7.4] - 2020-05-08
 
