@@ -66,7 +66,7 @@ RSpec.describe Pastel::ColorParser, "::parse" do
   end
 
   it "parses styles from parent text in nested text" do
-    pastel = Pastel.new
+    pastel = Pastel.new(enabled: true)
     colored = pastel.bold.on_yellow("foo" + pastel.blue("bar") + "baz")
     parsed = parser.parse(colored)
 
@@ -78,7 +78,7 @@ RSpec.describe Pastel::ColorParser, "::parse" do
   end
 
   it "parses color when overriden in nested text" do
-    pastel = Pastel.new
+    pastel = Pastel.new(enabled: true)
     colored = pastel.yellow.on_red("foo" + pastel.green.bold.on_cyan("bar") + "baz")
     parsed = parser.parse(colored)
 
@@ -90,7 +90,7 @@ RSpec.describe Pastel::ColorParser, "::parse" do
   end
 
   it "parses colors nested with blocks" do
-   pastel = Pastel.new
+   pastel = Pastel.new(enabled: true)
    colored = pastel.red.on_green("foo") do
                green.on_red("bar ", "baz") do
                  yellow("qux")
