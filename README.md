@@ -5,14 +5,14 @@
 # Pastel
 
 [![Gem Version](https://badge.fury.io/rb/pastel.svg)][gem]
-[![Actions CI](https://github.com/piotrmurach/pastel/workflows/CI/badge.svg?branch=master)][gh_actions_ci]
+[![Actions CI](https://github.com/piotrmurach/pastel/actions/workflows/ci.yml/badge.svg)][gh_actions_ci]
 [![Build status](https://ci.appveyor.com/api/projects/status/9blbjfq42o4v1rk4?svg=true)][appveyor]
 [![Code Climate](https://codeclimate.com/github/piotrmurach/pastel/badges/gpa.svg)][codeclimate]
 [![Coverage Status](https://coveralls.io/repos/github/piotrmurach/pastel/badge.svg)][coverage]
 [![Inline docs](https://inch-ci.org/github/piotrmurach/pastel.svg?branch=master)][inchpages]
 
 [gem]: https://badge.fury.io/rb/pastel
-[gh_actions_ci]: https://github.com/piotrmurach/pastel/actions?query=workflow%3ACI
+[gh_actions_ci]: https://github.com/piotrmurach/pastel/actions/workflows/ci.yml
 [appveyor]: https://ci.appveyor.com/project/piotrmurach/pastel
 [codeclimate]: https://codeclimate.com/github/piotrmurach/pastel
 [coverage]: https://coveralls.io/github/piotrmurach/pastel
