@@ -9,14 +9,12 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/9blbjfq42o4v1rk4?svg=true)][appveyor]
 [![Code Climate](https://codeclimate.com/github/piotrmurach/pastel/badges/gpa.svg)][codeclimate]
 [![Coverage Status](https://coveralls.io/repos/github/piotrmurach/pastel/badge.svg)][coverage]
-[![Inline docs](https://inch-ci.org/github/piotrmurach/pastel.svg?branch=master)][inchpages]
 
 [gem]: https://badge.fury.io/rb/pastel
 [gh_actions_ci]: https://github.com/piotrmurach/pastel/actions/workflows/ci.yml
 [appveyor]: https://ci.appveyor.com/project/piotrmurach/pastel
 [codeclimate]: https://codeclimate.com/github/piotrmurach/pastel
 [coverage]: https://coveralls.io/github/piotrmurach/pastel
-[inchpages]: https://inch-ci.org/github/piotrmurach/pastel
 
 > Terminal output styling with intuitive and clean API that doesn't monkey patch String class.
 
